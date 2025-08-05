@@ -82,7 +82,7 @@ export default function Header() {
         ? 'glass-effect-strong border-b border-purple-500/50 backdrop-blur-xl' 
         : 'glass-effect border-b border-purple-800/30'
     }`}>
-      <div className="container mx-auto px-4 py-4 w-full">
+      <div className="mx-auto px-3 sm:px-4 py-4 w-full max-w-7xl">
         <div className="flex items-center justify-between w-full">
           {/* Logo con efecto typing */}
           <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-pink-400 to-orange-400 bg-clip-text text-transparent flex-shrink-0 animate-pulse">
@@ -134,23 +134,23 @@ export default function Header() {
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`md:hidden transition-all duration-500 ease-in-out overflow-hidden w-full ${
+        <div className={`md:hidden transition-all duration-500 ease-in-out overflow-hidden ${
           isMenuOpen 
             ? 'max-h-96 opacity-100 mt-4' 
             : 'max-h-0 opacity-0 mt-0'
         }`}>
           <nav 
-            className="pb-4 border-t border-purple-800/30 pt-4 w-full glass-effect rounded-lg"
+            className="pb-4 border-t border-purple-800/30 pt-4 glass-effect rounded-lg mx-1"
             id="mobile-menu"
             role="navigation"
             aria-label="Navegación móvil"
           >
-            <div className="flex flex-col space-y-2">
+            <div className="flex flex-col space-y-2 px-2">
               {navItems.map((item, index) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`text-left transition-all duration-300 py-3 px-4 rounded-md w-full group relative overflow-hidden ${
+                  className={`text-left transition-all duration-300 py-3 px-3 rounded-md group relative overflow-hidden ${
                     activeSection === item.id
                       ? 'text-cyan-400 bg-purple-800/40 transform scale-105'
                       : 'text-slate-300 hover:text-cyan-400 hover:bg-purple-800/30'
@@ -168,7 +168,7 @@ export default function Header() {
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-pink-500/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 </button>
               ))}
-              <div className="pt-2">
+              <div className="pt-2 px-2">
                 <Button 
                   className="bg-gradient-to-r from-cyan-500 to-orange-500 hover:from-cyan-600 hover:to-orange-600 w-full card-glow transform hover:scale-105 transition-all duration-300"
                   style={{ 
