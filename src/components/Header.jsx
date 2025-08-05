@@ -85,7 +85,12 @@ export default function Header() {
       <div className="mx-auto px-3 sm:px-4 py-4 w-full max-w-7xl">
         <div className="flex items-center justify-between w-full">
           {/* Logo con efecto typing */}
-          <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-pink-400 to-orange-400 bg-clip-text text-transparent flex-shrink-0 animate-pulse">
+          <div className="flex items-center space-x-3 text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-pink-400 to-orange-400 bg-clip-text text-transparent flex-shrink-0">
+            <img 
+              src="/assets/logo/logonuevo.svg" 
+              alt="Pablo Proboste Logo" 
+              className="w-8 h-8 sm:w-10 sm:h-10 animate-pulse"
+            />
             <span className="typing-animation">Pablo Proboste</span>
           </div>
 
