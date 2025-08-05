@@ -1,0 +1,56 @@
+# Robots.txt para Pablo Proboste Portfolio
+# https://dev-craft-lake.vercel.app
+
+User-agent: *
+Allow: /
+
+# Permitir específicamente a los principales bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Desallow archivos y directorios no necesarios
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /vite.config.js
+Disallow: /tailwind.config.js
+Disallow: /postcss.config.js
+Disallow: /eslint.config.js
+Disallow: /package.json
+Disallow: /package-lock.json
+
+# Permitir archivos importantes
+Allow: /assets/
+Allow: /favicon.ico
+Allow: /sitemap.xml
+Allow: /manifest.json
+
+# Sitemap location
+Sitemap: https://dev-craft-lake.vercel.app/sitemap.xml
+
+# Crawl delay para ser considerado con los servidores
+Crawl-delay: 1

@@ -1,0 +1,58 @@
+{
+  "name": "Pablo Proboste - Desarrollador Full Stack",
+  "short_name": "Pablo Proboste Dev",
+  "description": "Portfolio profesional de Pablo Proboste, Desarrollador Full Stack especializado en React, JavaScript y Node.js",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0891b2",
+  "orientation": "portrait-primary",
+  "lang": "es-AR",
+  "dir": "ltr",
+  "scope": "/",
+  "categories": ["business", "productivity", "developer"],
+  "icons": [
+    {
+      "src": "/assets/logo/logonuevo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/pablo-proboste2.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Ver Proyectos",
+      "short_name": "Proyectos",
+      "description": "Explora mis proyectos de desarrollo web",
+      "url": "/#proyectos",
+      "icons": [
+        {
+          "src": "/assets/logo/logonuevo.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Contactar",
+      "short_name": "Contacto",
+      "description": "Ponte en contacto conmigo",
+      "url": "/#contacto",
+      "icons": [
+        {
+          "src": "/assets/logo/logonuevo.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
