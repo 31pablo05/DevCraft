@@ -82,15 +82,17 @@ export default function Header() {
         ? 'glass-effect-strong border-b border-purple-500/50 backdrop-blur-xl' 
         : 'glass-effect border-b border-purple-800/30'
     }`}>
-      <div className="mx-auto px-3 sm:px-4 py-4 w-full max-w-7xl">
+      <div className="mx-auto px-3 sm:px-4 py-3 sm:py-4 w-full max-w-7xl">
         <div className="flex items-center justify-between w-full">
           {/* Logo con efecto typing */}
-          <div className="flex items-center space-x-3 text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-pink-400 to-orange-400 bg-clip-text text-transparent flex-shrink-0">
-            <img 
-              src="/assets/logo/logonuevo.svg" 
-              alt="Pablo Proboste Logo" 
-              className="w-8 h-8 sm:w-10 sm:h-10 animate-pulse"
-            />
+          <div className="flex items-center space-x-4 text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-pink-400 to-orange-400 bg-clip-text text-transparent flex-shrink-0">
+            <div className="relative group cursor-pointer">
+              <img 
+                src="/assets/logo/logonuevo.svg" 
+                alt="Pablo Proboste Logo" 
+                className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 transform transition-all duration-500 hover:scale-110 hover:rotate-12 filter drop-shadow-lg group-hover:drop-shadow-2xl animate-pulse group-hover:animate-none"
+              />
+            </div>
             <span className="typing-animation">Pablo Proboste</span>
           </div>
 
