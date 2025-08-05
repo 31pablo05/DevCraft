@@ -1,3 +1,469 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Variables CSS personalizadas */
+:root {
+  --primary: #06b6d4;
+  --primary-dark: #0891b2;
+  --secondary: #f97316;
+  --secondary-dark: #ea580c;
+  --background: #0c0a1e;
+  --background-light: #1a1332;
+  --foreground: #f1f5f9;
+  --muted: #312e81;
+  --muted-foreground: #cbd5e1;
+  --border: #4c1d95;
+  --input: #312e81;
+  --ring: #06b6d4;
+  --accent: #ec4899;
+  --accent-dark: #db2777;
+}
+
+/* Estilos base */
+* {
+  border-color: var(--border);
+}
+
+/* Prevenir scroll horizontal */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  background: linear-gradient(135deg, #0c0a1e 0%, #1a1332 35%, #312e81 70%, #4c1d95 100%);
+  background-attachment: fixed;
+  color: var(--foreground);
+  font-feature-settings: "rlig" 1, "calt" 1;
+  position: relative;
+}
+
+/* Efectos de fondo animados */
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(249, 115, 22, 0.12) 0%, transparent 50%),
+              radial-gradient(circle at 40% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 70% 60%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+  animation: floatingBg 25s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes floatingBg {
+  0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+  25% { transform: translate(30px, -30px) rotate(90deg); }
+  50% { transform: translate(-20px, 20px) rotate(180deg); }
+  75% { transform: translate(20px, 30px) rotate(270deg); }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar - Hidden for cleaner design */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: transparent;
+}
+
+/* Alternative method to hide scrollbar */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+/* Clases utilitarias para efectos modernos */
+.glass-effect {
+  background: rgba(26, 19, 50, 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(203, 213, 225, 0.08);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-effect-strong {
+  background: rgba(26, 19, 50, 0.95);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(203, 213, 225, 0.15);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.card-glow {
+  box-shadow: 
+    0 0 40px rgba(6, 182, 212, 0.15),
+    0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.card-glow:hover {
+  box-shadow: 
+    0 0 60px rgba(6, 182, 212, 0.25), 
+    0 0 100px rgba(236, 72, 153, 0.1),
+    0 12px 48px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+}
+
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.floating-animation {
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Nuevas animaciones para el header mejorado */
+.typing-animation {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter 3s steps(15, end) infinite alternate;
+}
+
+@keyframes typewriter {
+  0% { width: 0; }
+  50% { width: 100%; }
+  100% { width: 100%; }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Ultra Modern Hero Section Animations */
+@keyframes animate-gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: animate-gradient-shift 4s ease infinite;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.8s ease-out forwards;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+.delay-400 {
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+
+.delay-600 {
+  animation-delay: 0.6s;
+  opacity: 0;
+}
+
+.delay-800 {
+  animation-delay: 0.8s;
+  opacity: 0;
+}
+
+.delay-1000 {
+  animation-delay: 1s;
+  opacity: 0;
+}
+
+.delay-1200 {
+  animation-delay: 1.2s;
+  opacity: 0;
+}
+
+/* Enhanced Card Glow Effects */
+.card-glow-intense {
+  box-shadow: 
+    0 0 40px rgba(6, 182, 212, 0.3),
+    0 0 80px rgba(236, 72, 153, 0.2),
+    0 0 120px rgba(249, 115, 22, 0.1),
+    0 16px 64px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card-glow-intense:hover {
+  box-shadow: 
+    0 0 60px rgba(6, 182, 212, 0.4),
+    0 0 120px rgba(236, 72, 153, 0.3),
+    0 0 180px rgba(249, 115, 22, 0.2),
+    0 20px 80px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* 3D Transform Effects */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.rotate-y-12 {
+  transform: rotateY(12deg);
+}
+
+.rotate-x-6 {
+  transform: rotateX(6deg);
+}
+
+.transform-gpu {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* Floating Animations with Different Speeds */
+.floating-slow {
+  animation: floating-slow 4s ease-in-out infinite;
+}
+
+.floating-medium {
+  animation: floating-medium 3s ease-in-out infinite;
+}
+
+.floating-fast {
+  animation: floating-fast 2s ease-in-out infinite;
+}
+
+@keyframes floating-slow {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-15px) rotate(5deg); 
+  }
+}
+
+@keyframes floating-medium {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-12px) rotate(-3deg); 
+  }
+}
+
+@keyframes floating-fast {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-8px) rotate(2deg); 
+  }
+}
+
+/* Advanced Gradient Animations */
+@keyframes morphing-gradient {
+  0% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    background-position: 100% 50%;
+    filter: hue-rotate(90deg);
+  }
+  50% {
+    background-position: 100% 100%;
+    filter: hue-rotate(180deg);
+  }
+  75% {
+    background-position: 0% 100%;
+    filter: hue-rotate(270deg);
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: hue-rotate(360deg);
+  }
+}
+
+.morphing-bg {
+  background-size: 400% 400%;
+  animation: morphing-gradient 8s ease infinite;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+button:focus-visible, 
+a:focus-visible {
+  outline: 2px solid #06b6d4;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Mobile menu improvements */
+@media (max-width: 768px) {
+  .typing-animation {
+    animation: none;
+    width: auto;
+    white-space: normal;
+  }
+  
+  .floating-slow,
+  .floating-medium,
+  .floating-fast {
+    animation-duration: 6s;
+  }
+  
+  .card-glow-intense:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+  
+  /* Prevent overflow on mobile */
+  #inicio {
+    min-height: calc(100vh - 4rem);
+    overflow-y: visible;
+  }
+  
+  /* Mobile About Section optimizations */
+  #sobre-mi .glass-effect {
+    backdrop-filter: blur(8px);
+  }
+  
+  #sobre-mi .floating-slow,
+  #sobre-mi .floating-medium,
+  #sobre-mi .floating-fast {
+    animation-duration: 8s;
+  }
+  
+  /* Reduce motion intensity on mobile */
+  #sobre-mi .group:hover .transform {
+    transform: scale(1.02) rotate(-1deg);
+  }
+  
+  /* Better touch targets for mobile */
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve text readability */
+  .text-xs {
+    font-size: 0.75rem;
+    line-height: 1.2;
+  }
+}
+
+/* Better image aspect ratio and container */
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+/* Improved container for hero section */
+#inicio {
+  overflow-y: visible;
+}
+
+/* Ensure no horizontal scroll */
+body {
+  overflow-x: hidden;
+}
+
+/* Better responsive spacing for image section */
+@media (min-width: 1024px) {
+  .perspective-1000 {
+    max-width: 28rem; /* Increased from lg:max-w-md */
+  }
+}
+
+@media (min-width: 1280px) {
+  .perspective-1000 {
+    max-width: 32rem; /* Even larger on xl screens */
+  }
+}
+
+/* Improved mobile grid layouts */
+@media (max-width: 640px) {
+  .grid-cols-2 > * {
+    min-width: 0; /* Prevent grid overflow */
+  }
+  
+  /* Better mobile card spacing */
+  .glass-effect {
+    padding: 0.75rem;
+  }
+  
+  /* Responsive text scaling */
+  .text-2xl {
+    font-size: 1.25rem;
+  }
+  
+  .text-xl {
+    font-size: 1.125rem;
+  }
+}
+
+/* Dark mode optimizations */
+@media (prefers-reduced-motion: reduce) {
+  .animate-slide-up,
+  .animate-gradient-shift,
+  .floating-slow,
+  .floating-medium,
+  .floating-fast,
+  .morphing-bg {
+    animation: none;
+  }
+  
+  .transform-gpu {
+    transform: none;
+  }
+}
