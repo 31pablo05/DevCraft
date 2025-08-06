@@ -26,9 +26,9 @@ export default function AboutSection() {
   }, [])
 
   const achievements = [
-    { icon: <Award className="w-6 h-6" />, title: "Proyectos Completados", value: "25+", color: "text-cyan-400" },
-    { icon: <Coffee className="w-6 h-6" />, title: "Tazas de Café", value: "1.2K+", color: "text-orange-400" },
-    { icon: <Target className="w-6 h-6" />, title: "Clientes Satisfechos", value: "15+", color: "text-pink-400" },
+    { icon: <Award className="w-6 h-6" />, title: "Proyectos Completados", value: "10+", color: "text-cyan-400" },
+    { icon: <Coffee className="w-6 h-6" />, title: "Horas de Código", value: "500+", color: "text-orange-400" },
+    { icon: <Target className="w-6 h-6" />, title: "Clientes Satisfechos", value: "5+", color: "text-pink-400" },
     { icon: <Heart className="w-6 h-6" />, title: "Años de Pasión", value: "3+", color: "text-purple-400" }
   ]
   return (

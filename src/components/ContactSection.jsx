@@ -170,22 +170,22 @@ Enviado desde tu portfolio web 🌐`
 
       <div className="container mx-auto max-w-6xl relative z-10">
         {/* Enhanced Header */}
-        <div className={`text-center mb-6 sm:mb-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="flex items-center justify-center mb-3">
+        <div className={`text-center mb-1 sm:mb-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="flex items-center justify-center mb-1 sm:mb-3">
             <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400 mr-3" />
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">
               Contacto
             </h2>
             <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-pink-400 ml-3" />
           </div>
-          <p className="text-slate-300 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto mb-4 px-4 leading-relaxed">
+          <p className="text-slate-300 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto mb-1 sm:mb-4 px-4 leading-relaxed">
             ¿Tienes un proyecto en mente? Me encantaría escuchar tus ideas y ayudarte a hacerlas realidad
           </p>
           <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-cyan-400 to-pink-400 rounded-full mx-auto"></div>
         </div>
 
         {/* WhatsApp CTA Destacado */}
-        <div className={`text-center mb-8 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className={`text-center mb-4 sm:mb-8 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="glass-effect p-4 sm:p-6 rounded-2xl max-w-2xl mx-auto card-glow-intense">
             <div className="flex items-center justify-center mb-3">
               <MessageCircle className="w-8 h-8 sm:w-10 sm:h-10 text-green-400 mr-3" />

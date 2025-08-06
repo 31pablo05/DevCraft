@@ -4,11 +4,24 @@ import { useState, useEffect } from "react"
 import { Button } from "./ui/Button"
 import { ArrowRight, Code2, Palette, Smartphone, Sparkles, Zap, Cpu } from "lucide-react"
 
+const roles = ["Frontend", "React", "JavaScript", "UI/UX"]
+
 export default function HeroSection() {
   const [typedText, setTypedText] = useState("")
-  const [isTyping, setIsTyping] = useState(true)
-  const roles = ["Frontend", "React", "JavaScript", "UI/UX"]
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0)
+
+  // Smooth scroll function
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      const headerHeight = 80
+      const top = element.offsetTop - headerHeight
+      window.scrollTo({
+        top,
+        behavior: 'smooth'
+      })
+    }
+  }
 
   // Typing animation effect
   useEffect(() => {
@@ -87,7 +100,7 @@ export default function HeroSection() {
                   <span className="block relative">
                     <span className="bg-gradient-to-r from-cyan-400 via-pink-400 to-orange-400 bg-clip-text text-transparent animate-gradient-shift">
                       {typedText}
-                      <span className={`inline-block w-0.5 h-8 sm:h-10 lg:h-12 bg-cyan-400 ml-1 ${isTyping ? 'animate-pulse' : 'animate-ping'}`}></span>
+                      <span className="inline-block w-0.5 h-8 sm:h-10 lg:h-12 bg-cyan-400 ml-1 animate-pulse"></span>
                     </span>
                   </span>
                 </h1>
@@ -114,6 +127,7 @@ export default function HeroSection() {
             {/* Enhanced Buttons with 3D Effects */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start w-full px-2 sm:px-0 animate-slide-up delay-400">
               <Button
+                onClick={() => scrollToSection('proyectos')}
                 size="lg"
                 className="bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 hover:from-cyan-400 hover:via-blue-400 hover:to-purple-400 w-full sm:w-auto flex-shrink-0 card-glow-intense transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden"
               >
@@ -124,6 +138,7 @@ export default function HeroSection() {
                 <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </Button>
               <Button
+                onClick={() => scrollToSection('contacto')}
                 size="lg"
                 variant="outline"
                 className="border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-500/20 hover:text-cyan-300 hover:border-cyan-300 bg-transparent/50 backdrop-blur-sm w-full sm:w-auto flex-shrink-0 transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden"

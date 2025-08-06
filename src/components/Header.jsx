@@ -68,6 +68,16 @@ export default function Header() {
     return () => document.removeEventListener('click', handleClickOutside)
   }, [isMenuOpen])
 
+  // Función para descargar CV
+  const downloadCV = () => {
+    const link = document.createElement('a')
+    link.href = '/CV/CV-PabloProboste DesarrolladorFrontend.pdf'
+    link.download = 'CV-PabloProboste-DesarrolladorFrontend.pdf'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
   const navItems = [
     { id: 'inicio', label: 'Inicio' },
     { id: 'sobre-mi', label: 'Sobre mí' },
@@ -79,8 +89,8 @@ export default function Header() {
   return (
     <header className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
       isScrolled 
-        ? 'glass-effect-strong border-b border-purple-500/50 backdrop-blur-xl' 
-        : 'glass-effect border-b border-purple-800/30'
+        ? 'border-b border-purple-500/50 backdrop-blur-xl' 
+        : 'border-b border-purple-800/30'
     }`}>
       <div className="mx-auto px-3 sm:px-4 py-3 sm:py-4 w-full max-w-7xl">
         <div className="flex items-center justify-between w-full">
@@ -116,6 +126,7 @@ export default function Header() {
               </button>
             ))}
             <Button 
+              onClick={downloadCV}
               className="bg-gradient-to-r from-cyan-500 to-orange-500 hover:from-cyan-600 hover:to-orange-600 text-sm px-3 lg:px-4 flex-shrink-0 card-glow transform hover:scale-105 transition-all duration-300"
               aria-label="Descargar currículum vitae"
             >
@@ -147,7 +158,9 @@ export default function Header() {
             : 'max-h-0 opacity-0 mt-0'
         }`}>
           <nav 
-            className="pb-4 border-t border-purple-800/30 pt-4 glass-effect rounded-lg mx-1"
+            className={`pb-4 border-t border-purple-800/30 pt-4 rounded-lg mx-1 transition-all duration-300 ${
+              isMenuOpen ? 'glass-effect backdrop-blur-md bg-slate-900/70' : ''
+            }`}
             id="mobile-menu"
             role="navigation"
             aria-label="Navegación móvil"
@@ -177,6 +190,7 @@ export default function Header() {
               ))}
               <div className="pt-2 px-2">
                 <Button 
+                  onClick={downloadCV}
                   className="bg-gradient-to-r from-cyan-500 to-orange-500 hover:from-cyan-600 hover:to-orange-600 w-full card-glow transform hover:scale-105 transition-all duration-300"
                   style={{ 
                     animationDelay: `${navItems.length * 100}ms`,

@@ -261,18 +261,18 @@ export default function ProjectsSection() {
 
       <div className="container mx-auto max-w-full relative z-10">
         {/* Enhanced Header */}
-        <div className={`text-center mb-12 sm:mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 mb-4 sm:mb-6">
+        <div className={`text-center mb-3 sm:mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 mb-2 sm:mb-6">
             Mis Proyectos
           </h2>
-          <p className="text-slate-300 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto mb-6 px-4 leading-relaxed">
+          <p className="text-slate-300 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto mb-2 sm:mb-6 px-4 leading-relaxed">
             Una colección de proyectos reales que he desarrollado, desde e-commerce hasta aplicaciones especializadas
           </p>
-          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-cyan-400 to-pink-400 rounded-full mx-auto mb-8"></div>
+          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-cyan-400 to-pink-400 rounded-full mx-auto mb-1 sm:mb-8"></div>
         </div>
 
         {/* Filter Tabs */}
-        <div className={`flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className={`flex flex-wrap justify-center gap-2 sm:gap-3 mb-4 sm:mb-12 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           {categories.map((category) => (
             <button
               key={category.id}
@@ -294,7 +294,7 @@ export default function ProjectsSection() {
         </div>
 
         {/* View Mode Toggle */}
-        <div className={`flex justify-center mb-8 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className={`flex justify-center mb-4 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="glass-effect rounded-lg p-1 flex">
             <button
               onClick={() => setViewMode('grid')}
