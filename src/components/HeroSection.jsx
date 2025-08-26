@@ -9,8 +9,16 @@ const roles = ["Frontend", "React", "JavaScript", "UI/UX"]
 export default function HeroSection() {
   const [typedText, setTypedText] = useState("")
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0)
-
-  // Smooth scroll function
+  const [particles] = useState(() => 
+    Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      size: Math.random() * 6 + 2,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      duration: Math.random() * 20 + 10,
+      delay: Math.random() * 5
+    }))
+  )
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -49,15 +57,6 @@ export default function HeroSection() {
     return () => clearInterval(typeInterval)
   }, [currentRoleIndex])
 
-  // Floating particles data
-  const particles = Array.from({ length: 20 }, (_, i) => ({
-    id: i,
-    size: Math.random() * 6 + 2,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    duration: Math.random() * 20 + 10,
-    delay: Math.random() * 5
-  }))
   return (
     <section id="inicio" className="relative pt-20 sm:pt-24 pb-16 sm:pb-20 px-2 sm:px-4 w-full max-w-full overflow-x-hidden section-dark min-h-[calc(100vh-5rem)] flex items-center">
       {/* Animated Background with Particles */}
@@ -94,7 +93,7 @@ export default function HeroSection() {
               {/* Main Heading with Staggered Animation */}
               <div className="overflow-hidden">
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-100 leading-tight w-full break-words animate-slide-up">
-                  <span className="inline-block transform hover:scale-105 transition-transform duration-300">
+                  <span className="inline-block transform hover:scale-105 transition-transform duration-300 cursor-default">
                     Desarrollador
                   </span>
                   <span className="block relative">
@@ -109,7 +108,7 @@ export default function HeroSection() {
               {/* Enhanced Description */}
               <div className="overflow-hidden">
                 <p className="text-base sm:text-lg lg:text-xl text-slate-300 leading-relaxed max-w-full lg:max-w-2xl mx-auto lg:mx-0 px-2 sm:px-0 animate-slide-up delay-200">
-                  <span className="inline-block">Construyendo</span>{" "}
+                  <span className="inline-block">Especializado en crear</span>{" "}
                   <span className="inline-block font-semibold bg-gradient-to-r from-cyan-400 to-pink-400 bg-clip-text text-transparent">
                     interfaces modernas
                   </span>{" "}
@@ -117,9 +116,9 @@ export default function HeroSection() {
                   <br className="hidden sm:block" />
                   <span className="inline-block mt-2">Transformo ideas en</span>{" "}
                   <span className="inline-block font-semibold bg-gradient-to-r from-pink-400 to-orange-400 bg-clip-text text-transparent">
-                    experiencias digitales excepcionales
+                    experiencias web excepcionales
                   </span>
-                  <span className="inline-block">.</span>
+                  <span className="inline-block"> que generan resultados.</span>
                 </p>
               </div>
             </div>
@@ -208,9 +207,10 @@ export default function HeroSection() {
               <div className="relative transform-gpu group-hover:rotate-y-12 group-hover:rotate-x-6 transition-all duration-700 ease-out px-4 sm:px-6 lg:px-8">
                 <img 
                   src="/assets/pablo-proboste2.png"
-                  alt="Pablo Proboste - Desarrollador Full Stack"
+                  alt="Pablo Proboste - Desarrollador Frontend especializado en React y JavaScript"
                   width={500} 
                   height={500} 
+                  loading="eager"
                   className="w-full h-auto rounded-2xl shadow-2xl max-w-full card-glow-intense transform group-hover:scale-105 transition-all duration-500 aspect-square object-cover"
                 />
                 
@@ -234,7 +234,7 @@ export default function HeroSection() {
         </div>
 
         {/* Floating Stats/Metrics - Better positioned */}
-        <div className="absolute bottom-4 left-4 sm:bottom-8 sm:left-8 hidden lg:block animate-slide-up delay-1000">
+        <div className="absolute bottom-2 left-4 sm:bottom-4 sm:left-8 hidden lg:block animate-slide-up delay-1000">
           <div className="bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 rounded-lg p-3 sm:p-4 card-glow">
             <div className="flex items-center space-x-2 sm:space-x-3">
               <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-400 rounded-full animate-pulse"></div>
@@ -243,7 +243,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="absolute bottom-4 right-4 sm:bottom-8 sm:right-8 hidden lg:block animate-slide-up delay-1200">
+        <div className="absolute bottom-2 right-4 sm:bottom-4 sm:right-8 hidden lg:block animate-slide-up delay-1200">
           <div className="bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 rounded-lg p-3 sm:p-4 card-glow">
             <div className="text-center">
               <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 to-pink-400 bg-clip-text text-transparent">2+</div>
