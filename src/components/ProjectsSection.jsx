@@ -114,20 +114,22 @@ function ProjectsSection() {
       {/* Animated Background optimizado */}
       <div className="absolute inset-0 overflow-hidden z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/10 to-slate-900"></div>
-        {/* Floating particles (menos cantidad) */}
-        {particles.map((particle) => (
-          <div
-            key={particle.id}
-            className="absolute w-1 h-1 bg-gradient-to-r from-cyan-400 to-pink-400 rounded-full opacity-20 sm:opacity-30"
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              width: `${particle.size}px`,
-              height: `${particle.size}px`,
-              opacity: particle.opacity,
-            }}
-          />
-        ))}
+        {/* Floating particles solo en sm+ */}
+        <div className="hidden sm:block">
+          {particles.map((particle) => (
+            <div
+              key={particle.id}
+              className="absolute w-1 h-1 bg-gradient-to-r from-cyan-400 to-pink-400 rounded-full opacity-30"
+              style={{
+                left: `${particle.x}%`,
+                top: `${particle.y}%`,
+                width: `${particle.size}px`,
+                height: `${particle.size}px`,
+                opacity: particle.opacity,
+              }}
+            />
+          ))}
+        </div>
         {/* Blobs solo en desktop */}
         <div className="hidden sm:block absolute top-1/4 right-1/4 w-64 h-64 sm:w-80 sm:h-80 bg-gradient-to-r from-cyan-400/5 to-blue-600/5 rounded-full blur-3xl animate-pulse"></div>
         <div className="hidden sm:block absolute bottom-1/3 left-1/3 w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-r from-pink-400/5 to-purple-600/5 rounded-full blur-3xl animate-pulse delay-1000"></div>

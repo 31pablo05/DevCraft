@@ -142,7 +142,7 @@ Enviado desde tu portfolio web 🌐`
     <section 
       ref={sectionRef}
       id="contacto" 
-      className="py-12 sm:py-16 lg:py-20 px-3 sm:px-4 relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
+      className="pt-2 sm:py-16 lg:py-20 px-3 sm:px-4 relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
     >
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
@@ -170,23 +170,24 @@ Enviado desde tu portfolio web 🌐`
 
       <div className="container mx-auto max-w-6xl relative z-10">
         {/* Enhanced Header */}
-        <div className={`text-center mb-1 sm:mb-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="flex items-center justify-center mb-1 sm:mb-3">
+  <div className={`text-center mb-0 sm:mb-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+  <div className="flex items-center justify-center mb-0 sm:mb-3">
             <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400 mr-3" />
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">
               Contacto
             </h2>
             <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-pink-400 ml-3" />
           </div>
-          <p className="text-slate-300 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto mb-1 sm:mb-4 px-4 leading-relaxed">
+        <p className="text-slate-300 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto mb-0 sm:mb-4 px-4 leading-relaxed">
             ¿Tienes un proyecto en mente? Me encantaría escuchar tus ideas y ayudarte a hacerlas realidad
           </p>
-          <div className=" w-20 sm:w-24 h-1 bg-gradient-to-r from-cyan-400 to-pink-400 rounded-full mx-auto"></div>
-        </div>
+        <div className=" w-20 sm:w-24 h-1 bg-gradient-to-r from-cyan-400 to-pink-400 rounded-full mx-auto mt-0"></div>
+  </div>
+  {/* Elimina margen inferior del header en mobile */}
 
         {/* WhatsApp CTA Destacado */}
         <div className={`text-center mb-4 sm:mb-8 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="glass-effect p-4 sm:p-6 rounded-2xl max-w-2xl mx-auto card-glow-intense">
+          <div className="glass-effect p-2 sm:p-6 rounded-2xl max-w-2xl mx-auto card-glow-intense mt-1 mb-0">
             <div className="flex items-center justify-center mb-3">
               <MessageCircle className="w-8 h-8 sm:w-10 sm:h-10 text-green-400 mr-3" />
               <h3 className="text-xl sm:text-2xl font-bold text-slate-100">¡Hablemos por WhatsApp!</h3>
@@ -206,7 +207,7 @@ Enviado desde tu portfolio web 🌐`
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+  <div className="grid lg:grid-cols-2 gap-2 lg:gap-12 mb-0">
           {/* Contact Information */}
           <div className={`space-y-6 sm:space-y-8 order-2 lg:order-1 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
             <div>
@@ -327,7 +328,7 @@ Enviado desde tu portfolio web 🌐`
 
           {/* Contact Form */}
           <div className={`order-1 lg:order-2 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-            <div className="glass-effect rounded-2xl p-6 sm:p-8 card-glow-intense">
+            <div className="glass-effect rounded-2xl p-2 sm:p-8 card-glow-intense mt-0 mb-0">
               <div className="text-center mb-6">
                 <h3 className="text-xl sm:text-2xl font-bold text-slate-100 mb-2 flex items-center justify-center">
                   <Send className="w-6 h-6 mr-2 text-cyan-400" />

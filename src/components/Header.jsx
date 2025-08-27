@@ -96,7 +96,7 @@ export default function Header() {
           {/* Logo con efecto typing */}
           <div className="flex items-center space-x-4 text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-pink-400 to-orange-400 bg-clip-text text-transparent flex-shrink-0">
             <div className="relative group cursor-pointer">
-              <img loading="lazy" width="96" height="96" 
+              <img width="96" height="96" 
                 src="/assets/logo/logonuevo.svg" 
                 alt="Pablo Proboste Logo" 
                 className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 transform transition-all duration-500 hover:scale-110 hover:rotate-12 filter drop-shadow-lg group-hover:drop-shadow-2xl animate-pulse group-hover:animate-none"
@@ -129,7 +129,7 @@ export default function Header() {
               className="bg-gradient-to-r from-cyan-500 to-orange-500 hover:from-cyan-600 hover:to-orange-600 text-sm px-3 lg:px-4 flex-shrink-0 card-glow transform hover:scale-105 transition-all duration-300"
               aria-label="Descargar currículum vitae"
             >
-              <Download className="w-4 h-4 mr-1 lg:mr-2" />
+                <Download className="w-4 h-4 mr-1 lg:mr-2" />
               <span className="hidden lg:inline">Descargar CV</span>
               <span className="lg:hidden">CV</span>
             </Button>
