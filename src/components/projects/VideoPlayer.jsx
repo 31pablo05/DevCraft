@@ -37,6 +37,12 @@ const VideoPlayer = ({ videoSrc, posterSrc, onLoadStart, onCanPlay }) => {
     onCanPlay && onCanPlay()
   }
 
+  // Genera srcSet para el poster (WebP recomendado, PNG/JPG fallback)
+  const posterSrcSet = posterSrc
+    ? `${posterSrc.replace('.webp', '-256.webp')} 256w, ${posterSrc.replace('.webp', '-515.webp')} 515w, ${posterSrc} 1024w`
+    : undefined;
+  const posterSizes = "(max-width: 640px) 256px, 515px";
+
   return (
     <div 
       className="relative w-full h-full group cursor-pointer"
@@ -55,6 +61,12 @@ const VideoPlayer = ({ videoSrc, posterSrc, onLoadStart, onCanPlay }) => {
         loop
         playsInline
         muted={isMuted}
+        width="515"
+        height="256"
+        loading="lazy"
+        fetchpriority="low"
+        // srcSet y sizes para el poster (solo navegadores que lo soportan)
+        {...(posterSrcSet ? { poster: posterSrc, 'data-poster-srcset': posterSrcSet, 'data-poster-sizes': posterSizes } : {})}
       />
       {isLoading && (
         <div className="absolute inset-0 bg-slate-800/50 flex items-center justify-center">
