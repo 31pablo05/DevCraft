@@ -63,11 +63,9 @@ export default function AboutSection() {
             <div className="max-w-xs sm:max-w-sm lg:max-w-md mx-auto w-full group px-4 sm:px-0">
               {/* Multiple Image Layers for 3D Effect */}
               <div className="relative">
-                <img 
+                <img loading="lazy" width="288" height="288" 
                   src="/assets/1.png"
                   alt="Pablo Proboste - Desarrollador Full Stack"
-                  width={400} 
-                  height={400} 
                   className="w-full rounded-xl sm:rounded-2xl shadow-2xl max-w-full card-glow-intense transform group-hover:scale-105 group-hover:-rotate-2 transition-all duration-500 relative z-10"
                 />
                 

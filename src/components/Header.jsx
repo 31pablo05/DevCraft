@@ -96,7 +96,7 @@ export default function Header() {
           {/* Logo con efecto typing */}
           <div className="flex items-center space-x-4 text-xl sm:text-2xl font-bold bg-gradient-to-r from-cyan-400 via-pink-400 to-orange-400 bg-clip-text text-transparent flex-shrink-0">
             <div className="relative group cursor-pointer">
-              <img 
+              <img loading="lazy" width="96" height="96" 
                 src="/assets/logo/logonuevo.svg" 
                 alt="Pablo Proboste Logo" 
                 className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 transform transition-all duration-500 hover:scale-110 hover:rotate-12 filter drop-shadow-lg group-hover:drop-shadow-2xl animate-pulse group-hover:animate-none"

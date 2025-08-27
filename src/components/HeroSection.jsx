@@ -205,12 +205,9 @@ export default function HeroSection() {
 
               {/* Main Image Container with Better Sizing */}
               <div className="relative transform-gpu group-hover:rotate-y-12 group-hover:rotate-x-6 transition-all duration-700 ease-out px-4 sm:px-6 lg:px-8">
-                <img 
+                <img loading="lazy" width="288" height="288" 
                   src="/assets/pablo-proboste2.png"
                   alt="Pablo Proboste - Desarrollador Frontend especializado en React y JavaScript"
-                  width={500} 
-                  height={500} 
-                  loading="eager"
                   className="w-full h-auto rounded-2xl shadow-2xl max-w-full card-glow-intense transform group-hover:scale-105 transition-all duration-500 aspect-square object-cover"
                 />
                 
