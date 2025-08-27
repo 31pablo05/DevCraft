@@ -1,5 +1,5 @@
 const ProjectStats = ({ projects }) => (
-  <div className="mb-12 transition-all duration-1000 delay-400">
+  <div className="mb-4 sm:mb-6 transition-all duration-1000 delay-400">
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 text-center hover:border-cyan-400/50 transition-all duration-300">
         <div className="text-2xl sm:text-3xl font-bold text-cyan-400 mb-2">

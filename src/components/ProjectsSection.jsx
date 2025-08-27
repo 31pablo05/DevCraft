@@ -112,7 +112,7 @@ function ProjectsSection() {
       className="py-12 sm:py-16 lg:py-20 px-3 sm:px-4 w-full max-w-full overflow-x-hidden bg-slate-900 relative"
     >
       {/* Animated Background */}
-      <div className="absolute inset-0 overflow-hidden">
+  <div className="absolute inset-0 overflow-hidden z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/10 to-slate-900"></div>
         
         {/* Floating particles */}
@@ -133,16 +133,16 @@ function ProjectsSection() {
         <div className="absolute top-1/4 right-1/4 w-64 h-64 sm:w-80 sm:h-80 bg-gradient-to-r from-cyan-400/5 to-blue-600/5 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-1/3 left-1/3 w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-r from-pink-400/5 to-purple-600/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
-      <div className="container mx-auto max-w-full relative z-10">
-        <ProjectsHeader isVisible={isVisible} />
-        <FilterTabs categories={categories} activeFilter={activeFilter} setActiveFilter={setActiveFilter} isVisible={isVisible} />
-        <ViewModeToggle viewMode={viewMode} setViewMode={setViewMode} isVisible={isVisible} />
+  <div className="container mx-auto max-w-full relative z-20">
+    <ProjectsHeader isVisible={isVisible} />
+  <FilterTabs categories={categories} activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
+  <ViewModeToggle viewMode={viewMode} setViewMode={setViewMode} />
         {/* Projects Grid */}
         <div className={`grid ${
           viewMode === 'grid' 
             ? 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3' 
             : 'grid-cols-1 max-w-5xl mx-auto'
-        } gap-6 sm:gap-8 mb-12 transition-all duration-500`}>
+        } gap-2 sm:gap-3 mt-1 mb-2 transition-all duration-500`}>
           {projectsWithIcons.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} viewMode={viewMode} animated={projectsAnimated} />
           ))}
@@ -154,7 +154,7 @@ function ProjectsSection() {
   <BottomCTA isVisible={isVisible} />
       </div>
  {/* Custom Styles */}
-      <style jsx>{`
+  <style>{`
         @keyframes slide-up {
           from {
             opacity: 0;

@@ -2,7 +2,7 @@ const TechnologyStats = ({ projects }) => {
   const techs = Array.from(new Set(projects.flatMap(p => p.technologies)))
     .slice(0, 12)
   return (
-    <div className="mb-12 transition-all duration-1000 delay-500">
+  <div className="mb-4 sm:mb-6 transition-all duration-1000 delay-500">
       <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-6 sm:p-8">
         <h3 className="text-xl sm:text-2xl font-bold text-slate-100 mb-6 text-center">
           Tecnologías Más Utilizadas

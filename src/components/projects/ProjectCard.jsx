@@ -4,13 +4,10 @@ import ProgressBar from "./ProgressBar"
 import { Button } from "../ui/Button"
 import { Github, ExternalLink, Eye } from "lucide-react"
 
-const ProjectCard = ({ project, index, viewMode, animated }) => (
+const ProjectCard = ({ project, viewMode }) => (
   <div 
     key={project.id} 
-    className={`bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl overflow-hidden group hover:border-cyan-400/50 transition-all duration-500 hover:transform hover:scale-105 hover:-translate-y-2 shadow-xl hover:shadow-2xl hover:shadow-cyan-400/10 ${
-      animated ? 'animate-slide-up opacity-100' : 'opacity-0'
-    } ${viewMode === 'list' ? 'flex flex-col lg:flex-row' : ''}`}
-    style={{ animationDelay: `${index * 150}ms` }}
+    className={`bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl overflow-hidden group hover:border-cyan-400/50 transition-all duration-500 hover:transform hover:scale-105 hover:-translate-y-2 shadow-xl hover:shadow-2xl hover:shadow-cyan-400/10 animate-slide-up opacity-100 ${viewMode === 'list' ? 'flex flex-col lg:flex-row' : ''}`}
   >
     <div className={`${viewMode === 'list' ? 'lg:w-2/5' : ''} h-64 sm:h-72 relative overflow-hidden`}>
       <VideoPlayer
@@ -45,7 +42,7 @@ const ProjectCard = ({ project, index, viewMode, animated }) => (
         </div>
       </div>
     </div>
-    <div className={`${viewMode === 'list' ? 'lg:w-3/5' : ''} p-6 flex flex-col`}>
+  <div className={`${viewMode === 'list' ? 'lg:w-3/5' : ''} pt-2 pb-6 px-6 flex flex-col`}>
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center space-x-3 flex-1 min-w-0">
           <div className="p-2 rounded-lg bg-gradient-to-r from-cyan-500/20 to-purple-600/20 text-cyan-400 flex-shrink-0">

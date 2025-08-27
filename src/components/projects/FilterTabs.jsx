@@ -1,7 +1,7 @@
-const FilterTabs = ({ categories, activeFilter, setActiveFilter, isVisible }) => (
-  <div className={`flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+const FilterTabs = ({ categories, activeFilter, setActiveFilter }) => (
+  <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-2 sm:mb-4 z-10">
     {categories.map((category) => (
-      <button
+    <button
         key={category.id}
         onClick={() => setActiveFilter(category.id)}
         className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all duration-300 text-sm sm:text-base flex items-center space-x-2 ${
