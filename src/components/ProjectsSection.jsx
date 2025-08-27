@@ -149,8 +149,7 @@ function ProjectsSection() {
         </div>
   {/* Statistics Section */}
   <ProjectStats projects={projects} />
-{/* Technology Stats */}
-  <TechnologyStats projects={projects} />
+  
   <BottomCTA isVisible={isVisible} />
       </div>
  {/* Custom Styles */}

@@ -66,7 +66,7 @@ export default function Footer() {
                 </h3>
               </div>
               <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-md mx-auto md:mx-0 mb-4">
-                Desarrollador Full Stack especializado en crear experiencias web modernas, funcionales y escalables con las últimas tecnologías.
+                Desarrollador Frontend especializado en crear experiencias web modernas, funcionales y escalables con las últimas tecnologías.
               </p>
               <div className="flex items-center justify-center md:justify-start text-slate-400 text-sm space-x-4">
                 <div className="flex items-center">

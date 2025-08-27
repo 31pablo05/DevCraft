@@ -181,7 +181,7 @@ Enviado desde tu portfolio web 🌐`
           <p className="text-slate-300 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto mb-1 sm:mb-4 px-4 leading-relaxed">
             ¿Tienes un proyecto en mente? Me encantaría escuchar tus ideas y ayudarte a hacerlas realidad
           </p>
-          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-cyan-400 to-pink-400 rounded-full mx-auto"></div>
+          <div className=" w-20 sm:w-24 h-1 bg-gradient-to-r from-cyan-400 to-pink-400 rounded-full mx-auto"></div>
         </div>
 
         {/* WhatsApp CTA Destacado */}
