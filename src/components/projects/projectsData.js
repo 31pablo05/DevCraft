@@ -29,7 +29,7 @@ const projects = [
 		category: "wellness",
 		github: "https://github.com/31pablo05/PichiRayen",
 		demo: "https://pichirayen.vercel.app/",
-		videoSrc: "/videosProjects/PichiRayen.mp4",
+		videoSrc: "/videosProjects/pichiray.mp4",
 		posterSrc: "/posters/posterpichirayen.webp",
 		featured: true,
 		status: "Producción",
