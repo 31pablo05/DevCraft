@@ -30,7 +30,7 @@ const projects = [
 		github: "https://github.com/31pablo05/PichiRayen",
 		demo: "https://pichirayen.vercel.app/",
 		videoSrc: "/videosProjects/pichiRayen.mp4",
-		posterSrc: "/posters/posterPichirayen.webp",
+		posterSrc: "/posters/posterPichiRayen.webp",
 		featured: true,
 		status: "Producción",
 		detailedStatus: "Sitio web activo con todas las funcionalidades",
