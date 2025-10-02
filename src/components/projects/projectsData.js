@@ -177,7 +177,7 @@ const projects = [
 		category: "beauty",
 		github: "https://github.com/31pablo05/MYBeautyStudy",
 		demo: "https://mybeautystudy.vercel.app/",
-		videoSrc: "public/videosProjects/MyBeautyStudy.mp4",
+		videoSrc: "/videosProjects/MyBeautyStudy.mp4",
 		posterSrc: "/posters/posterMYBEAUTYSTUDY.webp",
 		featured: true,
 		status: "Producción",
