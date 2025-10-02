@@ -160,7 +160,7 @@ const projects = [
   featured: true,
   status: "Producción",
   detailedStatus: "Herramienta activa y funcional",
-  progress: 95,
+  progress: 100,
   icon: "Palette",
   startDate: "2024-06",
   endDate: "2024-07",
