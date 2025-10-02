@@ -178,7 +178,7 @@ const projects = [
 		github: "https://github.com/31pablo05/MYBeautyStudy",
 		demo: "https://mybeautystudy.vercel.app/",
 		videoSrc: "public/videosProjects/MyBeautyStudy.mp4",
-		posterSrc: "public/posters/posterMyBeautyStudy.webp",
+		posterSrc: "/posters/posterMYBEAUTYSTUDY.webp",
 		featured: true,
 		status: "Producción",
 		detailedStatus: "Estudio activo con sistema de reservas y catálogo completo",
