@@ -261,7 +261,7 @@ technologies: ["HTML5", "CSS", "React", "JSX","JavaScript", "Tailwind CSS", "Res
 category: "ecommerce",
 github: "https://github.com/31pablo05/Kuyen",
 demo: "https://kuyen.vercel.app/",
-videoSrc: "/videosProjects/Kuyen.mp4",
+videoSrc: "/videosProjects/KuyenWeb.mp4",
 posterSrc: "/posters/posterKuyen.webp",
 featured: true,
 status: "Desarrollo",

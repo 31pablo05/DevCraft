@@ -165,7 +165,7 @@ function ProjectsSection() {
           </div>
           
           <h2 className="text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#2a84eb] via-[#630898] to-[#2a84eb] mb-6 projects-animate-gradient bg-[length:200%_auto]">
-            Proyectos Destacados
+           Mis Proyectos 
           </h2>
           
           <div className="flex items-center justify-center gap-4 mb-6">
