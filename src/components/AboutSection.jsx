@@ -240,6 +240,25 @@ export default function AboutSection() {
                          }}
                     />
                   </div>
+                  {/* Desktop CTA below image */}
+                  <div className="hidden lg:block mt-8">
+                    <div className="glass-card p-4 rounded-2xl shadow-custom hover:scale-105 transition-all duration-500 border-2 border-[#3e70e0] text-center">
+                      <h3 className="text-xl font-bold text-[#fdfeff] mb-3">
+                        ¿Listo para crear algo <span className="text-gradient-primary">increíble</span> juntos?
+                      </h3>
+                      <p className="text-slate-300 mb-4 text-base max-w-xl mx-auto">
+                        Transformemos tus ideas en realidad digital y llevemos tu proyecto al siguiente nivel
+                      </p>
+                      <a
+                        href="https://wa.me/542804389134?text=Hola%2C%20me%20gustar%C3%ADa%20hablarte%20sobre%20un%20proyecto%20de%20una%20web%20que%20tengo%20en%20mente.%20%F0%9F%91%8B"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-animated text-[#fdfeff] px-8 py-3 rounded-full font-semibold text-base transform hover:scale-110 hover:-translate-y-2 transition-all duration-300 shadow-custom hover:shadow-2xl w-full lg:w-auto inline-block"
+                      >
+                        Trabajemos Juntos
+                      </a>
+                    </div>
+                  </div>
                   
                   {/* Floating Icons */}
                   <div className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-2xl flex items-center justify-center floating-slow shadow-custom z-20"
@@ -328,18 +347,23 @@ export default function AboutSection() {
             </div>
           </div>
 
-          {/* Bottom CTA Section */}
-          <div className="relative z-50 text-center mt-6 sm:mt-8 lg:mt-10 px-2 sm:px-0 mb-8 sm:mb-10">
-            <div className="glass-card p-4 sm:p-5 lg:p-6 rounded-2xl sm:rounded-3xl max-w-3xl mx-auto shadow-custom hover:scale-105 transition-all duration-500 border-2 border-[#3e70e0]">
-              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#fdfeff] mb-3 sm:mb-4">
+          {/* Bottom CTA Section - Mobile Only */}
+          <div className="lg:hidden relative z-50 text-center mt-6 sm:mt-8 px-2 sm:px-0 mb-8 sm:mb-10">
+            <div className="glass-card p-4 sm:p-5 rounded-2xl sm:rounded-3xl max-w-3xl mx-auto shadow-custom hover:scale-105 transition-all duration-500 border-2 border-[#3e70e0]">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#fdfeff] mb-3 sm:mb-4">
                 ¿Listo para crear algo <span className="text-gradient-primary">increíble</span> juntos?
               </h3>
-              <p className="text-slate-300 mb-4 sm:mb-5 text-sm sm:text-base lg:text-lg max-w-xl mx-auto">
+              <p className="text-slate-300 mb-4 sm:mb-5 text-sm sm:text-base max-w-xl mx-auto">
                 Transformemos tus ideas en realidad digital y llevemos tu proyecto al siguiente nivel
               </p>
-              <button className="bg-animated text-[#fdfeff] px-8 sm:px-12 py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg transform hover:scale-110 hover:-translate-y-2 transition-all duration-300 shadow-custom hover:shadow-2xl w-full sm:w-auto">
+              <a
+                href="https://wa.me/542804389134?text=Hola%2C%20me%20gustar%C3%ADa%20hablarte%20sobre%20un%20proyecto%20de%20una%20web%20que%20tengo%20en%20mente.%20%F0%9F%91%8B"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-animated text-[#fdfeff] px-8 sm:px-12 py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base transform hover:scale-110 hover:-translate-y-2 transition-all duration-300 shadow-custom hover:shadow-2xl w-full sm:w-auto inline-block"
+              >
                 Trabajemos Juntos
-              </button>
+              </a>
             </div>
           </div>
         </div>

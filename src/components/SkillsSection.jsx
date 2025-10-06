@@ -1,16 +1,35 @@
 "use client"
 
-import { useState, useRef } from "react"
-import { Card, CardContent } from "./ui/Card"
-import { Badge } from "./ui/Badge"
-import { Code2, Palette, Wrench, Layers, Smartphone, Monitor, Github, Database, Award, ExternalLink, X, ChevronRight } from "lucide-react"
+import { useState, useRef, useEffect } from "react"
+import { Card, CardContent } from "./ui/Card";
+import { Badge } from "./ui/Badge";
+import { Code2, Palette, Wrench, Layers, Smartphone, Monitor, Github, Database, Award, ExternalLink, X, ChevronRight, Sparkles, Zap, TrendingUp } from "lucide-react"
 
 export default function SkillsSection() {
   const [selectedCert, setSelectedCert] = useState(null)
   const [showAllCerts, setShowAllCerts] = useState(false)
+  const [hoveredSkill, setHoveredSkill] = useState(null)
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const sectionRef = useRef(null)
 
-  // Datos de certificaciones
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect()
+        setMousePosition({
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top
+        })
+      }
+    }
+
+    const section = sectionRef.current
+    if (section) {
+      section.addEventListener('mousemove', handleMouseMove)
+      return () => section.removeEventListener('mousemove', handleMouseMove)
+    }
+  }, [])
+
   const certifications = [
     {
       id: 1,
@@ -31,26 +50,6 @@ export default function SkillsSection() {
       credentialId: "2TBWR2JXYLJZ",
       url: "https://www.coursera.org/account/accomplishments/certificate/2TBWR2JXYLJZ",
       description: "Certificación que valida conocimientos avanzados en React para el desarrollo de aplicaciones web."
-    },
-    {
-      id: 3,
-      title: "React Basics",
-      issuer: "Meta",
-      issued: "mar. 2024",
-      image: "/assets/certificates/react_basics.webp",
-      credentialId: "LEZPFP9TYHQT",
-      url: "https://www.coursera.org/account/accomplishments/certificate/LEZPFP9TYHQT",
-      description: "Introducción a React y sus fundamentos para el desarrollo de interfaces de usuario."
-    },
-    {
-      id: 4,
-      title: "HTML and CSS in depth",
-      issuer: "Meta",
-      issued: "feb. 2024",
-      image: "/assets/certificates/html_css_in_depth.webp",
-      credentialId: "VJ7HAKMBMMFM",
-      url: "https://www.coursera.org/account/accomplishments/certificate/VJ7HAKMBMMFM",
-      description: "Certificación que profundiza en HTML y CSS para construir sitios web robustos y estilizados."
     },
     {
       id: 5,
@@ -244,108 +243,158 @@ export default function SkillsSection() {
     }
   ]
 
-  // Tus habilidades reales organizadas por categorías
   const coreSkills = [
-    { name: "HTML5", level: 95, color: "from-orange-400 to-orange-600", icon: <Code2 className="w-5 h-5" /> },
-    { name: "CSS3", level: 90, color: "from-blue-400 to-cyan-600", icon: <Palette className="w-5 h-5" /> },
-    { name: "React", level: 88, color: "from-cyan-400 to-blue-600", icon: <Code2 className="w-5 h-5" /> },
-    { name: "JSX", level: 87, color: "from-purple-400 to-pink-600", icon: <Code2 className="w-5 h-5" /> },
-    { name: "Tailwind CSS", level: 92, color: "from-teal-400 to-green-600", icon: <Layers className="w-5 h-5" /> },
-    { name: "Responsive Design", level: 90, color: "from-pink-400 to-purple-600", icon: <Smartphone className="w-5 h-5" /> },
+    { name: "HTML5", level: 95, color: "from-[#3e6cde] via-[#550c83] to-[#2a045a]", icon: <Code2 className="w-5 h-5" />, description: "Estructura semántica moderna" },
+    { name: "CSS3", level: 90, color: "from-[#3e6cde] to-[#550c83]", icon: <Palette className="w-5 h-5" />, description: "Diseño avanzado y animaciones" },
+    { name: "React", level: 88, color: "from-[#550c83] via-[#3e6cde] to-[#2a045a]", icon: <Code2 className="w-5 h-5" />, description: "Componentes y hooks avanzados" },
+    { name: "JSX", level: 87, color: "from-[#2a045a] to-[#550c83]", icon: <Code2 className="w-5 h-5" />, description: "Sintaxis de React optimizada" },
+    { name: "Tailwind CSS", level: 92, color: "from-[#3e6cde] to-[#2a045a]", icon: <Layers className="w-5 h-5" />, description: "Utility-first CSS framework" },
+    { name: "Responsive Design", level: 90, color: "from-[#550c83] to-[#3e6cde]", icon: <Smartphone className="w-5 h-5" />, description: "Diseños adaptativos perfectos" },
   ]
 
   const tools = [
-    { name: "Git", level: 85, color: "from-red-400 to-orange-500", icon: <Github className="w-5 h-5" /> },
-    { name: "VS Code", level: 95, color: "from-blue-400 to-indigo-500", icon: <Code2 className="w-5 h-5" /> },
-    { name: "GitHub", level: 80, color: "from-gray-400 to-gray-600", icon: <Github className="w-5 h-5" /> },
-    { name: "Vercel", level: 75, color: "from-black to-gray-800", icon: <Monitor className="w-5 h-5" /> },
-    { name: "Node.js", level: 70, color: "from-green-400 to-green-600", icon: <Database className="w-5 h-5" /> },
-    { name: "MongoDB", level: 65, color: "from-green-500 to-teal-600", icon: <Database className="w-5 h-5" /> },
+    { name: "Git", level: 85, color: "from-[#3e6cde] to-[#550c83]", icon: <Github className="w-5 h-5" />, description: "Control de versiones" },
+    { name: "VS Code", level: 95, color: "from-[#550c83] to-[#2a045a]", icon: <Code2 className="w-5 h-5" />, description: "Editor principal" },
+    { name: "GitHub", level: 80, color: "from-[#2a045a] to-[#3e6cde]", icon: <Github className="w-5 h-5" />, description: "Colaboración y repositorios" },
+    { name: "Vercel", level: 75, color: "from-[#550c83] to-[#3e6cde]", icon: <Monitor className="w-5 h-5" />, description: "Deployment automático" },
+    { name: "Node.js", level: 70, color: "from-[#3e6cde] to-[#2a045a]", icon: <Database className="w-5 h-5" />, description: "Backend JavaScript" },
+    { name: "MongoDB", level: 65, color: "from-[#2a045a] via-[#550c83] to-[#3e6cde]", icon: <Database className="w-5 h-5" />, description: "Base de datos NoSQL" },
   ]
 
-  // Floating particles for background effect
-  const particles = Array.from({ length: 15 }, (_, i) => ({
+  const particles = Array.from({ length: 30 }, (_, i) => ({
     id: i,
     size: Math.random() * 4 + 2,
     x: Math.random() * 100,
     y: Math.random() * 100,
-    duration: Math.random() * 15 + 10,
-    delay: Math.random() * 3
+    duration: Math.random() * 20 + 15,
+    delay: Math.random() * 5
   }))
 
   return (
     <section 
       ref={sectionRef}
       id="habilidades" 
-      className="relative py-12 sm:py-16 lg:py-20 px-3 sm:px-4 w-full max-w-full overflow-x-hidden section-dark"
+      className="relative py-20 px-4 w-full overflow-hidden bg-gradient-to-br from-slate-950 via-[#2a045a]/30 to-slate-950"
     >
-      {/* Animated Background with Particles - Mobile optimized */}
-  <div className="absolute inset-0 overflow-hidden z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/10 to-slate-900"></div>
+      {/* Advanced Background Effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Animated Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(62,108,222,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(62,108,222,0.05)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000,transparent)]"></div>
         
-        {/* Floating Code Particles - Smaller on mobile */}
+        {/* Gradient Orbs with Glow */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#3e6cde]/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#550c83]/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#2a045a]/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        
+        {/* Floating Particles */}
         {particles.map((particle) => (
           <div
             key={particle.id}
-            className="absolute w-1 h-1 bg-gradient-to-r from-cyan-400 to-pink-400 rounded-full opacity-20 sm:opacity-30 animate-bounce"
+            className="absolute rounded-full opacity-30"
             style={{
-              left: `${Math.max(8, Math.min(92, particle.x))}%`,
-              top: `${Math.max(15, Math.min(80, particle.y))}%`,
-              width: `${Math.max(2, particle.size * 0.8)}px`,
-              height: `${Math.max(2, particle.size * 0.8)}px`,
-              animationDuration: `${particle.duration}s`,
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              background: `linear-gradient(135deg, #3e6cde, #550c83)`,
+              animation: `float ${particle.duration}s ease-in-out infinite`,
               animationDelay: `${particle.delay}s`,
+              boxShadow: '0 0 20px rgba(62, 108, 222, 0.5)'
             }}
           />
         ))}
 
-        {/* Background Gradient Blobs - Responsive sizing */}
-        <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-60 sm:h-60 lg:w-72 lg:h-72 bg-gradient-to-r from-cyan-400/5 to-blue-600/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-52 h-52 sm:w-64 sm:h-64 lg:w-80 lg:h-80 bg-gradient-to-r from-pink-400/5 to-purple-600/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        {/* Mouse Follow Gradient */}
+        <div 
+          className="absolute w-96 h-96 bg-gradient-radial from-[#3e6cde]/20 via-[#550c83]/10 to-transparent rounded-full blur-3xl transition-all duration-300 pointer-events-none"
+          style={{
+            left: `${mousePosition.x}px`,
+            top: `${mousePosition.y}px`,
+            transform: 'translate(-50%, -50%)'
+          }}
+        />
       </div>
 
-  <div className="container mx-auto max-w-full relative z-20">
-        {/* Enhanced Header - Mobile responsive */}
-  <div className="text-center mb-10 sm:mb-12 lg:mb-16 transition-all duration-1000 opacity-100 translate-y-0">
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-slate-100 mb-4 sm:mb-6 px-2">
-            <span className="bg-gradient-to-r from-cyan-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
-              Habilidades & Tecnologías
-            </span>
+      <div className="container mx-auto max-w-7xl relative z-10">
+        {/* Header with Enhanced Animation */}
+        <div className="text-center mb-20 space-y-6">
+          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-[#3e6cde]/10 to-[#550c83]/10 backdrop-blur-sm border border-[#3e6cde]/20 rounded-full px-6 py-3 mb-6">
+            <Sparkles className="w-5 h-5 text-[#3e6cde] animate-pulse" />
+            <span className="text-[#fcfdff] font-medium">Stack Tecnológico Profesional</span>
+            <Zap className="w-5 h-5 text-[#550c83] animate-pulse" />
+          </div>
+          
+          <h2 className="text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#3e6cde] via-[#550c83] to-[#3e6cde] mb-6 skills-animate-gradient bg-[length:200%_auto]">
+            Habilidades & Expertise
           </h2>
-          <div className="w-16 sm:w-20 lg:w-24 h-1 bg-gradient-to-r from-cyan-400 to-pink-400 rounded-full mx-auto mb-4 sm:mb-6"></div>
-          <p className="text-sm sm:text-base lg:text-lg text-slate-400 max-w-2xl mx-auto px-4 sm:px-0">
-            Las tecnologías que domino para crear experiencias web modernas y funcionales
+          
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="h-1 w-24 bg-gradient-to-r from-transparent via-[#3e6cde] to-transparent rounded-full"></div>
+            <div className="w-3 h-3 rounded-full bg-[#550c83] animate-pulse"></div>
+            <div className="h-1 w-24 bg-gradient-to-r from-transparent via-[#550c83] to-transparent rounded-full"></div>
+          </div>
+          
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            Tecnologías de vanguardia para crear experiencias web{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3e6cde] to-[#550c83] font-semibold">
+              excepcionales y escalables
+            </span>
           </p>
         </div>
 
-        {/* Core Skills Section - Mobile responsive */}
-  <div className="mb-12 sm:mb-16 transition-all duration-1000 delay-300 opacity-100 translate-y-0">
-          <div className="flex items-center justify-center mb-6 sm:mb-8 px-4">
-            <Code2 className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400 mr-2 sm:mr-3" />
-            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-100">Habilidades Principales</h3>
+        {/* Core Skills with Enhanced Cards */}
+        <div className="mb-24">
+          <div className="flex items-center justify-center gap-3 mb-12">
+            <TrendingUp className="w-7 h-7 text-[#3e6cde]" />
+            <h3 className="text-3xl font-bold text-[#fcfdff]">Habilidades Principales</h3>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 px-2 sm:px-0">
-            {coreSkills.map((skill) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {coreSkills.map((skill, index) => (
               <div 
-                key={skill.name} 
-                className="glass-effect p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl card-glow-intense group cursor-pointer transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 opacity-100"
+                key={skill.name}
+                onMouseEnter={() => setHoveredSkill(skill.name)}
+                onMouseLeave={() => setHoveredSkill(null)}
+                className="group relative"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="space-y-3 sm:space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
-                      <div className={`p-1.5 sm:p-2 rounded-lg bg-gradient-to-r ${skill.color} text-white group-hover:scale-110 transition-transform duration-300 flex-shrink-0`}></div>
-                      <h4 className="font-semibold text-slate-100 group-hover:text-cyan-400 transition-colors duration-300 text-sm sm:text-base truncate">
+                {/* Card Glow Effect */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-[#3e6cde] to-[#550c83] rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-500"></div>
+                
+                <div className="relative bg-slate-900/90 backdrop-blur-xl border border-[#3e6cde]/20 rounded-2xl p-6 hover:border-[#550c83]/50 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+                  {/* Icon Badge */}
+                  <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br ${skill.color} mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg shadow-[#3e6cde]/50`}>
+                    {skill.icon}
+                  </div>
+                  
+                  {/* Skill Info */}
+                  <div className="mb-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <h4 className="text-xl font-bold text-[#fcfdff] group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#3e6cde] group-hover:to-[#550c83] transition-all duration-300">
                         {skill.name}
                       </h4>
+                      <span className="text-2xl font-bold text-[#3e6cde]">{skill.level}%</span>
                     </div>
-                    <span className="text-xs sm:text-sm text-slate-300 font-medium flex-shrink-0 ml-2">{skill.level}%</span>
+                    <p className="text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
+                      {skill.description}
+                    </p>
                   </div>
-                  <div className="w-full bg-slate-800/50 rounded-full h-2 sm:h-3 overflow-hidden">
+                  
+                  {/* Progress Bar */}
+                  <div className="relative h-3 bg-slate-800/50 rounded-full overflow-hidden">
                     <div 
-                      className={`h-full bg-gradient-to-r ${skill.color} rounded-full transition-all duration-1500 ease-out relative overflow-hidden`}
-                      style={{ width: `${skill.level}%` }}
-                    ></div>
+                      className={`h-full bg-gradient-to-r ${skill.color} rounded-full relative overflow-hidden transition-all duration-1000 ease-out shadow-lg`}
+                      style={{ 
+                        width: hoveredSkill === skill.name ? '100%' : `${skill.level}%`,
+                      }}
+                    >
+                      <div className="absolute inset-0 bg-white/20 skills-animate-shimmer"></div>
+                    </div>
+                  </div>
+                  
+                  {/* Hover Indicator */}
+                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Sparkles className="w-5 h-5 text-[#fcfdff] animate-pulse" />
                   </div>
                 </div>
               </div>
@@ -353,34 +402,42 @@ export default function SkillsSection() {
           </div>
         </div>
 
-        {/* Tools & Platforms Section - Mobile responsive */}
-  <div className="mb-12 sm:mb-16 transition-all duration-1000 delay-500 opacity-100 translate-y-0">
-          <div className="flex items-center justify-center mb-6 sm:mb-8 px-4">
-            <Wrench className="w-5 h-5 sm:w-6 sm:h-6 text-orange-400 mr-2 sm:mr-3" />
-            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-100">Herramientas & Plataformas</h3>
+        {/* Tools Section */}
+        <div className="mb-24">
+          <div className="flex items-center justify-center gap-3 mb-12">
+            <Wrench className="w-7 h-7 text-[#550c83]" />
+            <h3 className="text-3xl font-bold text-[#fcfdff]">Herramientas & Plataformas</h3>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 px-2 sm:px-0">
-            {tools.map((tool) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {tools.map((tool, index) => (
               <div 
-                key={tool.name} 
-                className="glass-effect p-4 sm:p-5 lg:p-6 rounded-xl sm:rounded-2xl card-glow group cursor-pointer transform hover:scale-105 hover:-translate-y-2 transition-all duration-500 opacity-100"
+                key={tool.name}
+                className="group relative"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="space-y-3 sm:space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
-                      <div className={`p-1.5 sm:p-2 rounded-lg bg-gradient-to-r ${tool.color} text-white group-hover:scale-110 transition-transform duration-300 flex-shrink-0`}></div>
-                      <h4 className="font-semibold text-slate-100 group-hover:text-orange-400 transition-colors duration-300 text-sm sm:text-base truncate">
-                        {tool.name}
-                      </h4>
-                    </div>
-                    <span className="text-xs sm:text-sm text-slate-300 font-medium flex-shrink-0 ml-2">{tool.level}%</span>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-[#550c83] to-[#3e6cde] rounded-2xl blur opacity-20 group-hover:opacity-100 transition duration-500"></div>
+                
+                <div className="relative bg-slate-900/90 backdrop-blur-xl border border-[#550c83]/20 rounded-2xl p-6 hover:border-[#3e6cde]/50 transition-all duration-500 hover:scale-105">
+                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br ${tool.color} mb-4 group-hover:scale-110 transition-all duration-500 shadow-lg shadow-[#550c83]/50`}>
+                    {tool.icon}
                   </div>
-                  <div className="w-full bg-slate-800/50 rounded-full h-2 sm:h-3 overflow-hidden">
+                  
+                  <div className="mb-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <h4 className="text-lg font-bold text-[#fcfdff]">{tool.name}</h4>
+                      <span className="text-xl font-bold text-[#550c83]">{tool.level}%</span>
+                    </div>
+                    <p className="text-xs text-slate-400">{tool.description}</p>
+                  </div>
+                  
+                  <div className="relative h-2.5 bg-slate-800/50 rounded-full overflow-hidden">
                     <div 
-                      className={`h-full bg-gradient-to-r ${tool.color} rounded-full transition-all duration-1500 ease-out relative overflow-hidden`}
+                      className={`h-full bg-gradient-to-r ${tool.color} rounded-full transition-all duration-1000 ease-out shadow-lg`}
                       style={{ width: `${tool.level}%` }}
-                    ></div>
+                    >
+                      <div className="absolute inset-0 bg-white/20 skills-animate-shimmer"></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -388,205 +445,294 @@ export default function SkillsSection() {
           </div>
         </div>
 
-        {/* Additional Technologies Section - Mobile optimized */}
-  <div className="text-center transition-all duration-1000 delay-700 opacity-100 translate-y-0">
-          <div className="flex items-center justify-center mb-6 sm:mb-8 px-4">
-            <Layers className="w-5 h-5 sm:w-6 sm:h-6 text-pink-400 mr-2 sm:mr-3" />
-            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-100">Otras Tecnologías</h3>
-          </div>
-          
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 px-4">
-            {["Vite", "Bootstrap", "Framer Motion", "Helmet", "Electron"].map((tech) => (
-              <Badge 
-                key={tech} 
-                variant="tech" 
-                className="animate-slide-up text-xs sm:text-sm"
-              >
-                {tech}
-              </Badge>
-            ))}
-          </div>
-
-          <div className="flex items-center justify-center mb-4 sm:mb-6 px-4">
-            <Palette className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400 mr-2" />
-            <h4 className="text-base sm:text-lg font-semibold text-slate-200">Herramientas de Diseño</h4>
-          </div>
-          
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 px-4">
-            {["Canva", "GitHub Copilot"].map((tool) => (
-              <Badge 
-                key={tool} 
-                variant="skill" 
-                className="animate-slide-up text-xs sm:text-sm"
-              >
-                {tool}
-              </Badge>
-            ))}
-          </div>
-        </div>
-
-        {/* Certifications Section - Mobile optimized */}
-  <div className="mb-12 sm:mb-16 transition-all duration-1000 delay-900 opacity-100 translate-y-0">
-          <div className="flex items-center justify-center mb-6 sm:mb-8 px-4">
-            <Award className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 mr-2 sm:mr-3" />
-            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-100">Certificaciones</h3>
-          </div>
-          
-          <div className="glass-effect p-6 sm:p-8 rounded-xl sm:rounded-2xl card-glow-intense max-w-4xl mx-auto">
-            <div className="text-center mb-6">
-              <p className="text-slate-300 text-sm sm:text-base mb-4">
-                Formación continua en desarrollo web a través de plataformas como Coursera, Google, freeCodeCamp y Meta.
-              </p>
+        {/* Additional Technologies */}
+        <div className="mb-24">
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <Layers className="w-7 h-7 text-[#3e6cde]" />
+              <h3 className="text-3xl font-bold text-[#fcfdff]">Stack Completo</h3>
             </div>
             
-            {/* Featured Certifications Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-              {certifications.slice(0, 3).map((cert) => (
+            <div className="space-y-6">
+              <div className="flex flex-wrap justify-center gap-3">
+                {["Vite", "Bootstrap", "Framer Motion", "Helmet", "Electron"].map((tech, i) => (
+                  <div 
+                    key={tech}
+                    className="group relative px-6 py-3 bg-gradient-to-r from-slate-900/80 to-slate-900/80 backdrop-blur-xl border border-[#3e6cde]/30 rounded-full hover:border-[#550c83]/70 transition-all duration-300 hover:scale-110 cursor-pointer"
+                    style={{ animationDelay: `${i * 50}ms` }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#3e6cde]/0 via-[#550c83]/20 to-[#3e6cde]/0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <span className="relative text-[#fcfdff] font-semibold">{tech}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <Palette className="w-6 h-6 text-[#550c83]" />
+                <h4 className="text-xl font-semibold text-[#fcfdff]">Herramientas de Diseño</h4>
+              </div>
+              
+              <div className="flex flex-wrap justify-center gap-3">
+                {["Canva", "GitHub Copilot"].map((tool, i) => (
+                  <div 
+                    key={tool}
+                    className="group relative px-6 py-3 bg-gradient-to-r from-slate-900/80 to-slate-900/80 backdrop-blur-xl border border-[#550c83]/30 rounded-full hover:border-[#3e6cde]/70 transition-all duration-300 hover:scale-110 cursor-pointer"
+                    style={{ animationDelay: `${(i + 5) * 50}ms` }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#550c83]/0 via-[#3e6cde]/20 to-[#550c83]/0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <span className="relative text-[#fcfdff] font-semibold">{tool}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Certifications Section */}
+        <div className="mb-24">
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <Award className="w-7 h-7 text-[#3e6cde]" />
+              <h3 className="text-3xl font-bold text-[#fcfdff]">Certificaciones Profesionales</h3>
+            </div>
+            <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+              {certifications.length}+ certificaciones de instituciones líderes en tecnología
+            </p>
+          </div>
+          
+          <div className="relative">
+            {/* Featured Certifications */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              {certifications.slice(0, 3).map((cert, index) => (
                 <div 
                   key={cert.id}
                   onClick={() => setSelectedCert(cert)}
-                  className="glass-effect p-4 rounded-lg cursor-pointer group hover:card-glow-intense transition-all duration-300 transform hover:scale-105 animate-slide-up"
+                  className="group relative cursor-pointer"
+                  style={{ animationDelay: `${index * 150}ms` }}
                 >
-                  <div className="flex items-start space-x-3">
-                    <div className="w-12 h-12 bg-gradient-to-r from-yellow-400/20 to-orange-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Award className="w-6 h-6 text-yellow-400" />
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-[#3e6cde] to-[#550c83] rounded-xl blur opacity-25 group-hover:opacity-100 transition duration-500"></div>
+                  
+                  <div className="relative bg-slate-900/90 backdrop-blur-xl border border-[#3e6cde]/20 rounded-xl p-6 hover:border-[#550c83]/50 transition-all duration-500 hover:scale-105 hover:-translate-y-2">
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="w-16 h-16 bg-gradient-to-br from-[#3e6cde]/20 to-[#550c83]/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                        <Award className="w-8 h-8 text-[#3e6cde]" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-bold text-[#fcfdff] text-sm mb-2 line-clamp-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#3e6cde] group-hover:to-[#550c83] transition-all duration-300">
+                          {cert.title}
+                        </h4>
+                        <p className="text-xs text-[#3e6cde] font-semibold mb-1">{cert.issuer}</p>
+                        <p className="text-xs text-slate-400">{cert.issued}</p>
+                      </div>
+                      <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-[#3e6cde] group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-semibold text-slate-100 text-sm mb-1 group-hover:text-yellow-400 transition-colors duration-300 line-clamp-2">
-                        {cert.title}
-                      </h4>
-                      <p className="text-xs text-slate-400 mb-1">{cert.issuer}</p>
-                      <p className="text-xs text-slate-500">{cert.issued}</p>
+                    
+                    <div className="flex items-center gap-2 text-xs text-slate-500">
+                      <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#3e6cde]/30 to-transparent"></div>
+                      <span>Ver detalles</span>
+                      <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#550c83]/30 to-transparent"></div>
                     </div>
-                    <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-yellow-400 transition-colors duration-300 flex-shrink-0" />
                   </div>
                 </div>
               ))}
             </div>
             
-            {/* Ver todas las certificaciones */}
+            {/* View All Button */}
             <div className="text-center">
               <button 
                 onClick={() => setShowAllCerts(true)}
-                className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-slate-900 px-6 py-3 rounded-full font-medium transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 card-glow-intense text-sm sm:text-base"
+                className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#3e6cde] to-[#550c83] text-[#fcfdff] rounded-full font-bold text-lg overflow-hidden hover:shadow-2xl hover:shadow-[#3e6cde]/50 transition-all duration-500 hover:scale-110"
               >
-                Ver todas las certificaciones ({certifications.length})
+                <div className="absolute inset-0 bg-gradient-to-r from-[#550c83] to-[#3e6cde] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <Award className="w-6 h-6 relative z-10 group-hover:rotate-12 transition-transform duration-300" />
+                <span className="relative z-10">Ver todas las certificaciones ({certifications.length})</span>
+                <ChevronRight className="w-6 h-6 relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
               </button>
             </div>
           </div>
         </div>
 
-        {/* Bottom CTA - Mobile optimized */}
-  <div className="text-center mt-12 sm:mt-16 transition-all duration-1000 delay-1000 opacity-100 translate-y-0">
-          <div className="glass-effect p-6 sm:p-8 rounded-xl sm:rounded-2xl card-glow-intense max-w-2xl mx-auto">
-            <h3 className="text-xl sm:text-2xl font-bold text-slate-100 mb-3 sm:mb-4">
-              ¿Necesitas estas tecnologías en tu proyecto?
-            </h3>
-            <p className="text-slate-300 mb-4 sm:mb-6 text-sm sm:text-base">
-              Estoy siempre aprendiendo y adaptándome a nuevas tecnologías
-            </p>
-            <button className="bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 hover:from-cyan-400 hover:via-blue-400 hover:to-purple-400 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-medium transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 card-glow-intense text-sm sm:text-base">
-              Hablemos de tu proyecto
-            </button>
+        {/* CTA Section */}
+        <div className="relative">
+          <div className="absolute -inset-1 bg-gradient-to-r from-[#3e6cde] via-[#550c83] to-[#3e6cde] rounded-3xl blur-2xl opacity-30 animate-pulse"></div>
+          
+          <div className="relative bg-gradient-to-br from-slate-900/95 to-slate-900/95 backdrop-blur-2xl border border-[#3e6cde]/30 rounded-3xl p-12 text-center overflow-hidden">
+            {/* Animated Background Pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(62,108,222,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(85,12,131,0.3)_1px,transparent_1px)] bg-[size:30px_30px] skills-animate-grid-flow"></div>
+            </div>
+            
+            <div className="relative z-10">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#3e6cde]/20 to-[#550c83]/20 backdrop-blur-sm border border-[#3e6cde]/30 rounded-full px-6 py-2 mb-6">
+                <Sparkles className="w-4 h-4 text-[#3e6cde] animate-pulse" />
+                <span className="text-sm text-[#fcfdff] font-semibold">¿Listo para empezar?</span>
+              </div>
+              
+              <h3 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#3e6cde] via-[#550c83] to-[#3e6cde] mb-4 skills-animate-gradient bg-[length:200%_auto]">
+                Llevemos tu proyecto al siguiente nivel
+              </h3>
+              
+              <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto">
+                Combinando tecnología de vanguardia con diseño excepcional para crear experiencias web que{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3e6cde] to-[#550c83] font-bold">
+                  impulsan resultados
+                </span>
+              </p>
+              
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a
+                  href="https://wa.me/542804389134?text=Hola%2C%20me%20gustar%C3%ADa%20hablarte%20sobre%20un%20proyecto%20de%20una%20web%20que%20tengo%20en%20mente.%20%F0%9F%91%8B"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative px-8 py-4 bg-gradient-to-r from-[#3e6cde] to-[#550c83] text-[#fcfdff] rounded-full font-bold text-lg overflow-hidden hover:shadow-2xl hover:shadow-[#3e6cde]/50 transition-all duration-500 hover:scale-110"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#550c83] to-[#3e6cde] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <span className="relative z-10 flex items-center gap-2">
+                    Iniciar Proyecto
+                    <Zap className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
+                  </span>
+                </a>
+
+                <button
+                  className="group px-8 py-4 bg-slate-900/50 backdrop-blur-sm border-2 border-[#3e6cde]/50 hover:border-[#550c83] text-[#fcfdff] rounded-full font-bold text-lg transition-all duration-500 hover:scale-110 hover:bg-slate-900/80"
+                  onClick={() => {
+                    const projectsSection = document.getElementById('proyectos')
+                    if (projectsSection) {
+                      projectsSection.scrollIntoView({ behavior: 'smooth' })
+                    }
+                  }}
+                >
+                  <span className="flex items-center gap-2">
+                    Ver Proyectos
+                    <ChevronRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Modal de certificación individual */}
+      {/* Certificate Detail Modal */}
       {selectedCert && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/80 z-50 p-4">
-          <div className="glass-effect bg-slate-900/95 p-6 sm:p-8 rounded-2xl relative max-w-md w-full shadow-2xl border border-cyan-400/30 max-h-[90vh] overflow-y-auto">
-            <button 
-              onClick={() => setSelectedCert(null)} 
-              className="absolute top-4 right-4 text-slate-300 hover:text-cyan-400 transition-colors duration-300"
-              aria-label="Cerrar modal"
-            >
-              <X className="w-6 h-6" />
-            </button>
+        <div className="fixed inset-0 flex items-center justify-center bg-black/90 backdrop-blur-sm z-50 p-4 skills-animate-fadeIn">
+          <div className="relative max-w-lg w-full">
+            <div className="absolute -inset-1 bg-gradient-to-r from-[#3e6cde] to-[#550c83] rounded-3xl blur-xl opacity-75"></div>
             
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-yellow-400/20 to-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Award className="w-8 h-8 text-yellow-400" />
-              </div>
-              <h3 className="text-xl sm:text-2xl font-bold mb-4 text-slate-100 pr-8">
-                {selectedCert.title}
-              </h3>
-              <div className="mb-4">
-                <p className="text-cyan-400 font-semibold">{selectedCert.issuer}</p>
-                {selectedCert.issued && (
-                  <p className="text-slate-400 text-sm">Expedición: {selectedCert.issued}</p>
+            <div className="relative bg-slate-900/95 backdrop-blur-2xl border border-[#3e6cde]/30 rounded-3xl p-8 shadow-2xl">
+              <button 
+                onClick={() => setSelectedCert(null)} 
+                className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-slate-800/50 hover:bg-slate-800 text-slate-300 hover:text-[#fcfdff] rounded-full transition-all duration-300 hover:scale-110 hover:rotate-90"
+                aria-label="Cerrar modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              
+              <div className="text-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-[#3e6cde]/20 to-[#550c83]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 skills-animate-bounce-slow">
+                  <Award className="w-10 h-10 text-[#3e6cde]" />
+                </div>
+                
+                <h3 className="text-2xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#3e6cde] to-[#550c83] pr-8">
+                  {selectedCert.title}
+                </h3>
+                
+                <div className="mb-6 space-y-2">
+                  <p className="text-xl text-[#3e6cde] font-bold">{selectedCert.issuer}</p>
+                  {selectedCert.issued && (
+                    <p className="text-slate-400">Expedición: {selectedCert.issued}</p>
+                  )}
+                  <div className="inline-block px-4 py-2 bg-slate-800/50 rounded-lg">
+                    <p className="text-slate-500 text-sm">ID: <span className="text-slate-300 font-mono">{selectedCert.credentialId}</span></p>
+                  </div>
+                </div>
+                
+                <p className="text-slate-300 text-sm mb-8 leading-relaxed">
+                  {selectedCert.description}
+                </p>
+                
+                {selectedCert.url && (
+                  <a
+                    href={selectedCert.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-3 bg-gradient-to-r from-[#3e6cde] to-[#550c83] hover:from-[#550c83] hover:to-[#3e6cde] text-[#fcfdff] py-4 px-8 rounded-full font-bold transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-[#3e6cde]/50"
+                  >
+                    <ExternalLink className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
+                    Ver Credencial
+                  </a>
                 )}
-                <p className="text-slate-500 text-xs mt-1">ID: {selectedCert.credentialId}</p>
               </div>
-              <p className="text-slate-300 text-sm mb-6 leading-relaxed">
-                {selectedCert.description}
-              </p>
-              {selectedCert.url && (
-                <a
-                  href={selectedCert.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white py-3 px-6 rounded-full font-medium transform hover:scale-105 transition-all duration-300 card-glow-intense"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  Ver Credencial
-                </a>
-              )}
             </div>
           </div>
         </div>
       )}
 
-      {/* Modal de todas las certificaciones */}
+      {/* All Certifications Modal */}
       {showAllCerts && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/80 z-50 p-4">
-          <div className="glass-effect bg-slate-900/95 p-6 sm:p-8 rounded-2xl relative max-w-4xl w-full shadow-2xl border border-cyan-400/30 max-h-[80vh] overflow-y-auto">
-            <button 
-              onClick={() => setShowAllCerts(false)} 
-              className="absolute top-4 right-4 text-slate-300 hover:text-cyan-400 transition-colors duration-300"
-              aria-label="Cerrar modal"
-            >
-              <X className="w-6 h-6" />
-            </button>
+        <div className="fixed inset-0 flex items-center justify-center bg-black/90 backdrop-blur-sm z-50 p-4 skills-animate-fadeIn">
+          <div className="relative max-w-6xl w-full max-h-[85vh] overflow-hidden">
+            <div className="absolute -inset-1 bg-gradient-to-r from-[#3e6cde] via-[#550c83] to-[#3e6cde] rounded-3xl blur-xl opacity-75 skills-animate-gradient bg-[length:200%_auto]"></div>
             
-            <div className="text-center mb-6">
-              <h3 className="text-2xl sm:text-3xl font-bold text-slate-100 mb-2 pr-8">
-                Todas las Certificaciones
-              </h3>
-              <p className="text-slate-400">Mi formación continua en desarrollo web</p>
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {certifications.map((cert) => (
-                <div
-                  key={cert.id}
-                  onClick={() => {
-                    setShowAllCerts(false)
-                    setSelectedCert(cert)
-                  }}
-                  className="glass-effect p-4 rounded-lg cursor-pointer group hover:card-glow-intense transition-all duration-300 transform hover:scale-105"
-                >
-                  <div className="flex items-start space-x-3">
-                    <div className="w-10 h-10 bg-gradient-to-r from-yellow-400/20 to-orange-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Award className="w-5 h-5 text-yellow-400" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-semibold text-slate-100 text-sm mb-1 group-hover:text-yellow-400 transition-colors duration-300">
-                        {cert.title}
-                      </h4>
-                      <p className="text-xs text-slate-400 mb-1">{cert.issuer}</p>
-                      {cert.issued && (
-                        <p className="text-xs text-slate-500">{cert.issued}</p>
-                      )}
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-yellow-400 transition-colors duration-300 flex-shrink-0" />
-                  </div>
+            <div className="relative bg-slate-900/95 backdrop-blur-2xl border border-[#3e6cde]/30 rounded-3xl p-8 shadow-2xl overflow-y-auto max-h-[85vh]">
+              <button 
+                onClick={() => setShowAllCerts(false)} 
+                className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center bg-slate-800/50 hover:bg-slate-800 text-slate-300 hover:text-[#fcfdff] rounded-full transition-all duration-300 hover:scale-110 hover:rotate-90 z-10"
+                aria-label="Cerrar modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center gap-3 bg-gradient-to-r from-[#3e6cde]/20 to-[#550c83]/20 backdrop-blur-sm border border-[#3e6cde]/30 rounded-full px-6 py-3 mb-6">
+                  <Award className="w-5 h-5 text-[#3e6cde] animate-pulse" />
+                  <span className="text-sm text-[#fcfdff] font-semibold">{certifications.length} Certificaciones</span>
                 </div>
-              ))}
+                
+                <h3 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#3e6cde] via-[#550c83] to-[#3e6cde] mb-3 skills-animate-gradient bg-[length:200%_auto] pr-12">
+                  Formación Continua
+                </h3>
+                <p className="text-slate-400 text-lg">Mi trayectoria de aprendizaje en desarrollo web</p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {certifications.map((cert, index) => (
+                  <div
+                    key={cert.id}
+                    onClick={() => {
+                      setShowAllCerts(false)
+                      setSelectedCert(cert)
+                    }}
+                    className="group relative cursor-pointer"
+                    style={{ animationDelay: `${index * 50}ms` }}
+                  >
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-[#3e6cde] to-[#550c83] rounded-xl blur opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                    
+                    <div className="relative bg-slate-800/50 backdrop-blur-xl border border-[#3e6cde]/10 hover:border-[#550c83]/50 rounded-xl p-4 transition-all duration-300 hover:scale-105">
+                      <div className="flex items-start gap-3">
+                        <div className="w-12 h-12 bg-gradient-to-br from-[#3e6cde]/20 to-[#550c83]/20 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                          <Award className="w-6 h-6 text-[#3e6cde]" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-semibold text-[#fcfdff] text-sm mb-1 line-clamp-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#3e6cde] group-hover:to-[#550c83] transition-all duration-300">
+                            {cert.title}
+                          </h4>
+                          <p className="text-xs text-[#3e6cde] mb-1">{cert.issuer}</p>
+                          {cert.issued && (
+                            <p className="text-xs text-slate-500">{cert.issued}</p>
+                          )}
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#3e6cde] group-hover:translate-x-1 transition-all duration-300 flex-shrink-0" />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       )}
+    {/* Ensure section closes properly */}
     </section>
   )
 }

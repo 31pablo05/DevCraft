@@ -86,121 +86,11 @@ export default function Header() {
 
   return (
     <>
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          25% { transform: translateY(-8px) rotate(3deg); }
-          50% { transform: translateY(-4px) rotate(-3deg); }
-          75% { transform: translateY(-12px) rotate(2deg); }
-        }
-
-        @keyframes glow-pulse {
-          0%, 100% { 
-            filter: drop-shadow(0 0 8px rgba(62, 112, 224, 0.6)) 
-                    drop-shadow(0 0 16px rgba(97, 5, 147, 0.4));
-          }
-          50% { 
-            filter: drop-shadow(0 0 16px rgba(62, 112, 224, 0.9)) 
-                    drop-shadow(0 0 24px rgba(97, 5, 147, 0.6))
-                    drop-shadow(0 0 32px rgba(41, 2, 88, 0.4));
-          }
-        }
-
-        @keyframes shimmer {
-          0% { background-position: -200% center; }
-          100% { background-position: 200% center; }
-        }
-
-        @keyframes slideInFromRight {
-          from {
-            opacity: 0;
-            transform: translateX(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        .logo-float {
-          animation: float 4s ease-in-out infinite, glow-pulse 3s ease-in-out infinite;
-        }
-
-        .logo-container:hover .logo-float {
-          animation: float 2s ease-in-out infinite, glow-pulse 1.5s ease-in-out infinite;
-        }
-
-        .text-gradient-custom {
-          background: linear-gradient(135deg, #3e70e0 0%, #610593 35%, #290258 65%, #3e70e0 100%);
-          background-size: 300% 300%;
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
-          animation: shimmer 4s ease-in-out infinite;
-        }
-
-        .nav-link-active {
-          color: #3e70e0;
-          text-shadow: 0 0 20px rgba(62, 112, 224, 0.5);
-        }
-
-        .border-gradient {
-          border-image: linear-gradient(90deg, #610593, #3e70e0, #290258) 1;
-        }
-
-        .glass-header {
-          background: linear-gradient(180deg, 
-            rgba(0, 0, 0, 0.95) 0%, 
-            rgba(41, 2, 88, 0.85) 50%,
-            rgba(0, 0, 0, 0.9) 100%
-          );
-          backdrop-filter: blur(12px);
-          box-shadow: 0 4px 30px rgba(97, 5, 147, 0.3);
-        }
-
-        .glass-header-scrolled {
-          background: linear-gradient(180deg, 
-            rgba(0, 0, 0, 0.98) 0%, 
-            rgba(41, 2, 88, 0.92) 50%,
-            rgba(0, 0, 0, 0.95) 100%
-          );
-          backdrop-filter: blur(20px);
-          box-shadow: 0 8px 40px rgba(97, 5, 147, 0.5),
-                      0 2px 10px rgba(62, 112, 224, 0.3);
-        }
-
-        .mobile-menu-bg {
-          background: linear-gradient(180deg,
-            rgba(41, 2, 88, 0.95) 0%,
-            rgba(0, 0, 0, 0.98) 100%
-          );
-          backdrop-filter: blur(16px);
-          box-shadow: 0 8px 32px rgba(97, 5, 147, 0.4);
-        }
-
-        .button-glow {
-          box-shadow: 0 0 20px rgba(62, 112, 224, 0.4),
-                      0 0 40px rgba(97, 5, 147, 0.2);
-          transition: all 0.3s ease;
-        }
-
-        .button-glow:hover {
-          box-shadow: 0 0 30px rgba(62, 112, 224, 0.6),
-                      0 0 60px rgba(97, 5, 147, 0.4),
-                      0 0 80px rgba(41, 2, 88, 0.3);
-          transform: translateY(-2px);
-        }
-
-        .nav-underline {
-          background: linear-gradient(90deg, #3e70e0, #610593, #290258);
-        }
-      `}</style>
-
       <header className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-500 ${
         isScrolled 
-          ? 'glass-header-scrolled border-b-2' 
-          : 'glass-header border-b'
-      } border-gradient`}>
+          ? 'header-glass-header-scrolled border-b-2' 
+          : 'header-glass-header border-b'
+      } header-border-gradient`}>
         <div className="mx-auto px-3 sm:px-4 md:px-6 py-3 sm:py-4 w-full max-w-7xl">
           <div className="flex items-center justify-between w-full">
             {/* Logo con efecto flotante y resplandor */}
@@ -211,7 +101,7 @@ export default function Header() {
                   height="96" 
                   src="/assets/logo/logomejorado.webp" 
                   alt="Pablo Proboste Logo" 
-                  className="logo-float w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 transform transition-all duration-300 hover:scale-110"
+                  className="header-logo-float w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 transform transition-all duration-300 hover:scale-110"
                 />
                 <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                      style={{
@@ -220,7 +110,7 @@ export default function Header() {
                      }}
                 />
               </div>
-              <span className="text-gradient-custom font-extrabold tracking-tight whitespace-nowrap text-sm sm:text-base md:text-xl lg:text-2xl">
+              <span className="header-gradient-text font-extrabold tracking-tight whitespace-nowrap text-sm sm:text-base md:text-xl lg:text-2xl">
                 Pablo Proboste
               </span>
             </div>
@@ -233,20 +123,20 @@ export default function Header() {
                   onClick={() => scrollToSection(item.id)}
                   className={`relative text-sm xl:text-base font-medium whitespace-nowrap transition-all duration-300 group ${
                     activeSection === item.id
-                      ? 'nav-link-active scale-105'
+                      ? 'header-nav-link-active scale-105'
                       : 'text-slate-200 hover:text-[#3e70e0]'
                   }`}
                   aria-current={activeSection === item.id ? 'page' : undefined}
                 >
                   {item.label}
-                  <span className={`nav-underline absolute -bottom-1 left-0 h-0.5 transition-all duration-300 ${
+                  <span className={`header-nav-underline absolute -bottom-1 left-0 h-0.5 transition-all duration-300 ${
                     activeSection === item.id ? 'w-full' : 'w-0 group-hover:w-full'
                   }`} />
                 </button>
               ))}
               <Button 
                 onClick={downloadCV}
-                className="button-glow text-sm xl:text-base px-4 xl:px-6 py-2 flex-shrink-0 font-semibold transform transition-all duration-300 rounded-lg"
+                className="header-button-glow text-sm xl:text-base px-4 xl:px-6 py-2 flex-shrink-0 font-semibold transform transition-all duration-300 rounded-lg"
                 style={{
                   background: 'linear-gradient(135deg, #3e70e0 0%, #610593 50%, #290258 100%)',
                   border: '1px solid rgba(62, 112, 224, 0.3)'
@@ -287,7 +177,7 @@ export default function Header() {
           }`}>
             <nav 
               className={`pb-4 pt-4 rounded-xl mx-1 transition-all duration-300 ${
-                isMenuOpen ? 'mobile-menu-bg' : ''
+                isMenuOpen ? 'header-mobile-menu-bg' : ''
               }`}
               style={{
                 border: isMenuOpen ? '1px solid rgba(62, 112, 224, 0.3)' : 'none'
@@ -308,7 +198,7 @@ export default function Header() {
                     }`}
                     style={{ 
                       animationDelay: `${index * 100}ms`,
-                      animation: isMenuOpen ? 'slideInFromRight 0.5s ease-out forwards' : 'none',
+                      animation: isMenuOpen ? 'header-slideInFromRight 0.5s ease-out forwards' : 'none',
                       background: activeSection === item.id 
                         ? 'linear-gradient(135deg, rgba(62, 112, 224, 0.2) 0%, rgba(97, 5, 147, 0.2) 100%)'
                         : 'transparent',
@@ -336,10 +226,10 @@ export default function Header() {
                 <div className="pt-2 px-1">
                   <Button 
                     onClick={downloadCV}
-                    className="button-glow w-full font-semibold transform transition-all duration-300 rounded-lg"
+                    className="header-button-glow w-full font-semibold transform transition-all duration-300 rounded-lg"
                     style={{ 
                       animationDelay: `${navItems.length * 100}ms`,
-                      animation: isMenuOpen ? 'slideInFromRight 0.5s ease-out forwards' : 'none',
+                      animation: isMenuOpen ? 'header-slideInFromRight 0.5s ease-out forwards' : 'none',
                       background: 'linear-gradient(135deg, #3e70e0 0%, #610593 50%, #290258 100%)',
                       border: '1px solid rgba(62, 112, 224, 0.3)'
                     }}
