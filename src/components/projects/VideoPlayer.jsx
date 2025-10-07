@@ -1,7 +1,7 @@
-import { useState, useRef, useEffect } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import { Play, Pause, Volume2, VolumeX, RotateCcw } from "lucide-react"
 
-const VideoPlayer = ({ videoSrc, posterSrc, onLoadStart, onCanPlay }) => {
+const VideoPlayer = React.memo(({ videoSrc, posterSrc, onLoadStart, onCanPlay }) => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [isMuted, setIsMuted] = useState(true)
   const [isLoading, setIsLoading] = useState(true)
@@ -134,6 +134,6 @@ const VideoPlayer = ({ videoSrc, posterSrc, onLoadStart, onCanPlay }) => {
       </div>
     </div>
   )
-}
+})
 
 export default VideoPlayer

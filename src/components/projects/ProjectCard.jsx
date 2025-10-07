@@ -4,7 +4,7 @@ import ProgressBar from "./ProgressBar"
 import { Button } from "../ui/Button"
 import { Github, ExternalLink, Eye } from "lucide-react"
 
-const ProjectCard = ({ project, viewMode }) => (
+const ProjectCard = React.memo(({ project, viewMode }) => (
   <div 
     key={project.id} 
     className={`bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl overflow-hidden group hover:border-cyan-400/50 transition-all duration-500 hover:transform hover:scale-105 hover:-translate-y-2 shadow-xl hover:shadow-2xl hover:shadow-cyan-400/10 animate-slide-up opacity-100 ${viewMode === 'list' ? 'flex flex-col lg:flex-row' : ''}`}
@@ -115,6 +115,6 @@ const ProjectCard = ({ project, viewMode }) => (
       </div>
     </div>
   </div>
-)
+))
 
 export default ProjectCard

@@ -12,15 +12,28 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom'],
-          ui: ['lucide-react'],
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-icons': ['lucide-react'],
         },
+        // Optimizar nombres de archivos para mejor caching
+        assetFileNames: 'assets/[name]-[hash][extname]',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
       },
     },
-    // Compresión básica sin opciones avanzadas
+    // CSS code splitting para no bloquear
+    cssCodeSplit: true,
+    // Compresión optimizada
     minify: 'terser',
     // Límite de chunk warnings
     chunkSizeWarningLimit: 1000,
+    // Target moderno para mejor optimización
+    target: 'es2015',
+  },
+  // Optimizar esbuild
+  esbuild: {
+    drop: ['console', 'debugger'],
+    legalComments: 'none',
   },
   server: {
     port: 5174,

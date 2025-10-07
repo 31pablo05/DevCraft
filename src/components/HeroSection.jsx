@@ -9,16 +9,7 @@ const roles = ["Frontend", "React", "JavaScript", "UI/UX"]
 export default function HeroSection() {
   const [typedText, setTypedText] = useState("")
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0)
-  const [particles] = useState(() => 
-    Array.from({ length: 8 }, (_, i) => ({
-      id: i,
-      size: Math.random() * 4 + 2,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      duration: Math.random() * 15 + 8,
-      delay: Math.random() * 3
-    }))
-  )
+  
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
@@ -59,26 +50,10 @@ export default function HeroSection() {
 
   return (
     <section id="inicio" className="relative pt-20 sm:pt-24 pb-16 sm:pb-20 px-2 sm:px-4 w-full max-w-full overflow-x-hidden section-dark min-h-[calc(100vh-5rem)] flex items-center">
-      {/* Animated Background with Particles */}
+      {/* Animated Background - Optimized without particles */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900"></div>
         
-        {/* Floating Particles - Contained within bounds */}
-        {particles.map((particle) => (
-          <div
-            key={particle.id}
-            className="absolute w-2 h-2 bg-gradient-to-r from-[#3e70e0] to-[#610593] rounded-full opacity-20 animate-bounce"
-            style={{
-              left: `${Math.max(5, Math.min(95, particle.x))}%`,
-              top: `${Math.max(10, Math.min(85, particle.y))}%`,
-              width: `${particle.size}px`,
-              height: `${particle.size}px`,
-              animationDuration: `${particle.duration}s`,
-              animationDelay: `${particle.delay}s`,
-            }}
-          />
-        ))}
-
         {/* Morphing Background Blobs - Better positioning */}
         <div className="absolute top-1/4 left-1/4 w-72 h-72 lg:w-96 lg:h-96 bg-gradient-to-r from-[#3e70e0]/10 to-[#610593]/10 rounded-full blur-3xl animate-pulse transform rotate-45"></div>
         <div className="absolute bottom-1/4 right-1/4 w-60 h-60 lg:w-80 lg:h-80 bg-gradient-to-r from-[#610593]/10 to-[#290258]/10 rounded-full blur-3xl animate-pulse delay-1000 transform -rotate-45"></div>

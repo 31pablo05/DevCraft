@@ -32,18 +32,18 @@ function ProjectsSection() {
   useEffect(() => {
     const generateParticles = () => {
       const newParticles = [];
-      // Reducir partículas para mejor rendimiento
-      for (let i = 0; i < 12; i++) {
+      // Reducir partículas a 3 para máximo rendimiento
+      for (let i = 0; i < 3; i++) {
         newParticles.push({
           id: i,
           x: Math.random() * 100,
           y: Math.random() * 100,
-          size: Math.random() * 3 + 1,
-          opacity: Math.random() * 0.4 + 0.1,
-          moveX: (Math.random() - 0.5) * 0.3,
-          moveY: (Math.random() - 0.5) * 0.3,
-          duration: Math.random() * 25 + 20,
-          delay: Math.random() * 3
+          size: Math.random() * 2 + 1,
+          opacity: Math.random() * 0.2 + 0.05,
+          moveX: (Math.random() - 0.5) * 0.2,
+          moveY: (Math.random() - 0.5) * 0.2,
+          duration: Math.random() * 30 + 25,
+          delay: Math.random() * 2
         });
       }
       setParticles(newParticles);
