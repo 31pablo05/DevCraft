@@ -32,17 +32,18 @@ function ProjectsSection() {
   useEffect(() => {
     const generateParticles = () => {
       const newParticles = [];
-      for (let i = 0; i < 25; i++) {
+      // Reducir partículas para mejor rendimiento
+      for (let i = 0; i < 12; i++) {
         newParticles.push({
           id: i,
           x: Math.random() * 100,
           y: Math.random() * 100,
-          size: Math.random() * 4 + 2,
-          opacity: Math.random() * 0.6 + 0.2,
-          moveX: (Math.random() - 0.5) * 0.5,
-          moveY: (Math.random() - 0.5) * 0.5,
-          duration: Math.random() * 20 + 15,
-          delay: Math.random() * 5
+          size: Math.random() * 3 + 1,
+          opacity: Math.random() * 0.4 + 0.1,
+          moveX: (Math.random() - 0.5) * 0.3,
+          moveY: (Math.random() - 0.5) * 0.3,
+          duration: Math.random() * 25 + 20,
+          delay: Math.random() * 3
         });
       }
       setParticles(newParticles);
@@ -265,12 +266,12 @@ function ProjectsSection() {
 
         {/* Projects Grid with Enhanced Loading */}
         <Suspense fallback={
-          <div className="flex flex-col items-center justify-center py-20">
-            <div className="relative w-20 h-20 mb-6">
-              <div className="absolute inset-0 border-4 border-[#2a84eb]/20 rounded-full"></div>
-              <div className="absolute inset-0 border-4 border-transparent border-t-[#2a84eb] rounded-full animate-spin"></div>
+          <div className="flex flex-col items-center justify-center py-16">
+            <div className="relative w-16 h-16 mb-4">
+              <div className="absolute inset-0 border-3 border-[#2a84eb]/20 rounded-full"></div>
+              <div className="absolute inset-0 border-3 border-transparent border-t-[#2a84eb] rounded-full animate-spin"></div>
             </div>
-            <p className="text-slate-400 text-lg animate-pulse">Cargando proyectos increíbles...</p>
+            <p className="text-slate-400 animate-pulse">Cargando proyectos...</p>
           </div>
         }>
           <div className={`grid ${
@@ -297,9 +298,9 @@ function ProjectsSection() {
 
         {/* Statistics Section Enhanced */}
         <Suspense fallback={
-          <div className="text-center text-slate-400 py-12 animate-pulse">
-            <Zap className="w-12 h-12 mx-auto mb-4 text-[#2a84eb]" />
-            <p className="text-lg">Cargando estadísticas...</p>
+          <div className="text-center py-8 animate-pulse">
+            <div className="w-10 h-10 mx-auto mb-2 border-2 border-[#2a84eb]/20 border-t-[#2a84eb] rounded-full animate-spin"></div>
+            <p className="text-slate-400">Cargando estadísticas...</p>
           </div>
         }>
           <div className="mb-16">
@@ -309,9 +310,9 @@ function ProjectsSection() {
 
         {/* Bottom CTA Enhanced */}
         <Suspense fallback={
-          <div className="text-center text-slate-400 py-12 animate-pulse">
-            <Sparkles className="w-12 h-12 mx-auto mb-4 text-[#630898]" />
-            <p className="text-lg">Cargando sección de contacto...</p>
+          <div className="text-center py-8 animate-pulse">
+            <div className="w-10 h-10 mx-auto mb-2 border-2 border-[#630898]/20 border-t-[#630898] rounded-full animate-spin"></div>
+            <p className="text-slate-400">Cargando sección...</p>
           </div>
         }>
           <div className="relative">

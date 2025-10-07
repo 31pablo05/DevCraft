@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { Play, Pause, Volume2, VolumeX, RotateCcw } from "lucide-react"
 
 const VideoPlayer = ({ videoSrc, posterSrc, onLoadStart, onCanPlay }) => {
@@ -6,7 +6,28 @@ const VideoPlayer = ({ videoSrc, posterSrc, onLoadStart, onCanPlay }) => {
   const [isMuted, setIsMuted] = useState(true)
   const [isLoading, setIsLoading] = useState(true)
   const [showControls, setShowControls] = useState(false)
+  const [isInView, setIsInView] = useState(false)
   const videoRef = useRef(null)
+  const containerRef = useRef(null)
+
+  // Intersection Observer para lazy loading
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+          observer.disconnect() // Solo cargar una vez
+        }
+      },
+      { threshold: 0.1, rootMargin: '50px' }
+    )
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
 
   const handlePlay = () => {
     if (videoRef.current) {
@@ -37,37 +58,46 @@ const VideoPlayer = ({ videoSrc, posterSrc, onLoadStart, onCanPlay }) => {
     onCanPlay && onCanPlay()
   }
 
-  // Genera srcSet para el poster (WebP recomendado, PNG/JPG fallback)
-  const posterSrcSet = posterSrc
-    ? `${posterSrc.replace('.webp', '-256.webp')} 256w, ${posterSrc.replace('.webp', '-515.webp')} 515w, ${posterSrc} 1024w`
-    : undefined;
-  const posterSizes = "(max-width: 640px) 256px, 515px";
-
   return (
     <div 
+      ref={containerRef}
       className="relative w-full h-full group cursor-pointer"
       onMouseEnter={() => setShowControls(true)}
       onMouseLeave={() => setShowControls(false)}
     >
-      <video
-        ref={videoRef}
-        src={videoSrc}
-        poster={posterSrc}
-        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-        onLoadStart={handleLoadStart}
-        onCanPlay={handleCanPlay}
-        onPlay={() => setIsPlaying(true)}
-        onPause={() => setIsPlaying(false)}
-        loop
-        playsInline
-        muted={isMuted}
-        width="515"
-        height="256"
-        loading="lazy"
-        fetchpriority="low"
-        // srcSet y sizes para el poster (solo navegadores que lo soportan)
-        {...(posterSrcSet ? { poster: posterSrc, 'data-poster-srcset': posterSrcSet, 'data-poster-sizes': posterSizes } : {})}
-      />
+      {isInView ? (
+        <video
+          ref={videoRef}
+          src={videoSrc}
+          poster={posterSrc}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          onLoadStart={handleLoadStart}
+          onCanPlay={handleCanPlay}
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+          loop
+          playsInline
+          muted={isMuted}
+          width="515"
+          height="256"
+          loading="lazy"
+          fetchpriority="low"
+          preload="none"
+        />
+      ) : (
+        <div 
+          className="w-full h-full bg-slate-800 flex items-center justify-center"
+          style={{
+            backgroundImage: posterSrc ? `url(${posterSrc})` : 'none',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        >
+          <div className="bg-black/50 p-3 rounded-full">
+            <Play className="w-8 h-8 text-white" />
+          </div>
+        </div>
+      )}
       {isLoading && (
         <div className="absolute inset-0 bg-slate-800/50 flex items-center justify-center">
           <div className="flex flex-col items-center space-y-2">

@@ -10,13 +10,13 @@ export default function HeroSection() {
   const [typedText, setTypedText] = useState("")
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0)
   const [particles] = useState(() => 
-    Array.from({ length: 20 }, (_, i) => ({
+    Array.from({ length: 8 }, (_, i) => ({
       id: i,
-      size: Math.random() * 6 + 2,
+      size: Math.random() * 4 + 2,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      duration: Math.random() * 20 + 10,
-      delay: Math.random() * 5
+      duration: Math.random() * 15 + 8,
+      delay: Math.random() * 3
     }))
   )
   const scrollToSection = (sectionId) => {

@@ -253,7 +253,7 @@ const projects = [
 		teamSize: 2
 	},
 	{
-		id: 15,
+		id: 13,
 title: "Blanquería Kuyen – Tienda Online de Hogar",
 subtitle: "Acolchados, Sábanas, Cortinas y Más",
 description: "Diseñé la web de Blanquería Kuyen con React Router, permitiendo a los clientes navegar entre diferentes secciones de productos del hogar, como acolchados, sábanas, cortinas de baño, almohadas y mochilas. La web incluye galerías, secciones destacadas y contacto directo, ofreciendo una experiencia intuitiva y atractiva para explorar y conocer el catálogo completo.",
@@ -296,7 +296,7 @@ teamSize: 1
 	teamSize: 1
 	},
 	{
-		id: 15,
+		id: 16,
 	title: "Identificador de Bulones – Herramienta Web",
 	subtitle: "Diferenciación por Métrica, Whitworth y Paso de Hilo",
 	description: "Desarrollé una herramienta web especializada para facilitar la identificación de bulones y tornillos en ferreterías y bulonerías. Permite al empleado reconocer rápidamente el diámetro, tipo de rosca (métrica o Whitworth) y distinguir si es paso fino o común. Su objetivo es agilizar la búsqueda del bulón correcto, reducir errores y optimizar la atención al cliente.",
@@ -304,8 +304,8 @@ teamSize: 1
 	category: "tools",
 	github: "https://github.com/31pablo05/IdentificadorBulones",
 	demo: "https://identificador-bulones.vercel.app/",
-	videoSrc: "/videosProjects/IdentificadorBulones.mp4",
-	posterSrc: "/posters/posterIdentificadorBulones.webp",
+	videoSrc: "/videosProjects/TrueColor.mp4",
+	posterSrc: "/posters/posterTrueColor .webp",
 	featured: true,
 	status: "Desarrollo",
 	detailedStatus: "Herramienta funcional para identificar bulones",
