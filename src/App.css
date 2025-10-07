@@ -536,3 +536,263 @@ footer, #contacto {
 .skills-animate-grid-flow {
   animation: skills-grid-flow 20s linear infinite;
 }
+
+/* ============================================
+   ESTILOS Y ANIMACIONES DE ABOUT SECTION
+   ============================================ */
+
+/* Animaciones de AboutSection */
+@keyframes about-float-slow {
+  0%, 100% { 
+    transform: translateY(0) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-20px) rotate(5deg); 
+  }
+}
+
+@keyframes about-float-medium {
+  0%, 100% { 
+    transform: translateY(0) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-15px) rotate(-5deg); 
+  }
+}
+
+@keyframes about-float-fast {
+  0%, 100% { 
+    transform: translateY(0) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-10px) rotate(3deg); 
+  }
+}
+
+@keyframes about-pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(62, 112, 224, 0.4),
+                0 0 40px rgba(97, 5, 147, 0.2),
+                inset 0 0 20px rgba(62, 112, 224, 0.1);
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(62, 112, 224, 0.6),
+                0 0 80px rgba(97, 5, 147, 0.4),
+                inset 0 0 30px rgba(62, 112, 224, 0.2);
+  }
+}
+
+@keyframes about-gradient-shift {
+  0%, 100% { 
+    background-position: 0% 50%; 
+  }
+  50% { 
+    background-position: 100% 50%; 
+  }
+}
+
+@keyframes about-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes about-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Clases de animación de AboutSection */
+.about-floating-slow { 
+  animation: about-float-slow 6s ease-in-out infinite; 
+}
+
+.about-floating-medium { 
+  animation: about-float-medium 5s ease-in-out infinite; 
+}
+
+.about-floating-fast { 
+  animation: about-float-fast 4s ease-in-out infinite; 
+}
+
+.about-image-glow {
+  animation: about-pulse-glow 3s ease-in-out infinite;
+}
+
+.about-slide-up {
+  animation: about-slide-up 0.6s ease-out forwards;
+}
+
+.about-scale-in {
+  animation: about-scale-in 0.5s ease-out forwards;
+}
+
+/* Clases de estilo de AboutSection */
+.about-glass-card {
+  background: linear-gradient(135deg, 
+    rgba(62, 112, 224, 0.05) 0%,
+    rgba(97, 5, 147, 0.05) 50%,
+    rgba(41, 2, 88, 0.05) 100%
+  );
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(62, 112, 224, 0.2);
+}
+
+.about-glass-card:hover {
+  background: linear-gradient(135deg, 
+    rgba(62, 112, 224, 0.1) 0%,
+    rgba(97, 5, 147, 0.1) 50%,
+    rgba(41, 2, 88, 0.1) 100%
+  );
+  border-color: rgba(62, 112, 224, 0.4);
+}
+
+.about-text-gradient-primary {
+  background: linear-gradient(135deg, #3e70e0 0%, #610593 50%, #290258 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-border-gradient-primary {
+  border-image: linear-gradient(90deg, #3e70e0, #610593, #290258) 1;
+}
+
+.about-shadow-custom {
+  box-shadow: 
+    0 10px 40px rgba(62, 112, 224, 0.3),
+    0 5px 20px rgba(97, 5, 147, 0.2),
+    inset 0 1px 0 rgba(253, 254, 255, 0.1);
+}
+
+.about-bg-animated {
+  background: linear-gradient(135deg, #3e70e0, #610593, #290258, #3e70e0);
+  background-size: 300% 300%;
+  animation: about-gradient-shift 8s ease infinite;
+}
+
+/* Fondos específicos de AboutSection */
+.about-section-bg {
+  background: linear-gradient(180deg, #000000 0%, #290258 50%, #000000 100%);
+}
+
+.about-bg-blob-1 {
+  background: radial-gradient(circle, #3e70e0 0%, transparent 70%);
+}
+
+.about-bg-blob-2 {
+  background: radial-gradient(circle, #610593 0%, transparent 70%);
+}
+
+.about-bg-blob-3 {
+  background: radial-gradient(circle, #290258 0%, transparent 70%);
+}
+
+.about-image-overlay {
+  background: linear-gradient(135deg, 
+    rgba(62, 112, 224, 0.2) 0%, 
+    rgba(97, 5, 147, 0.2) 50%, 
+    rgba(41, 2, 88, 0.2) 100%
+  );
+}
+
+.about-icon-bg-1 {
+  background: linear-gradient(135deg, #3e70e0, #610593);
+}
+
+.about-icon-bg-2 {
+  background: linear-gradient(135deg, #610593, #290258);
+}
+
+.about-icon-bg-3 {
+  background: linear-gradient(135deg, #290258, #3e70e0);
+}
+
+.about-layer-1 {
+  background: linear-gradient(135deg, 
+    rgba(62, 112, 224, 0.3), 
+    rgba(97, 5, 147, 0.2)
+  );
+}
+
+.about-layer-2 {
+  background: linear-gradient(135deg, 
+    rgba(97, 5, 147, 0.2), 
+    rgba(41, 2, 88, 0.2)
+  );
+}
+
+/* Colores específicos de AboutSection */
+.about-color-primary {
+  color: #3e70e0;
+}
+
+.about-color-secondary {
+  color: #610593;
+}
+
+.about-gradient-from-1 { --tw-gradient-from: #3e70e0; }
+.about-gradient-to-1 { --tw-gradient-to: #610593; }
+.about-gradient-from-2 { --tw-gradient-from: #610593; }
+.about-gradient-to-2 { --tw-gradient-to: #290258; }
+.about-gradient-from-3 { --tw-gradient-from: #290258; }
+.about-gradient-to-3 { --tw-gradient-to: #3e70e0; }
+.about-gradient-from-4 { --tw-gradient-from: #3e70e0; }
+.about-gradient-to-4 { --tw-gradient-to: #290258; }
+
+/* ============================================
+   EFECTOS GLASS Y GLOW PARA CONTACT SECTION
+   ============================================ */
+
+/* Efecto de cristal */
+.glass-effect {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+/* Efecto de brillo suave */
+.card-glow {
+  box-shadow: 
+    0 4px 20px rgba(6, 182, 212, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Efecto de brillo intenso */
+.card-glow-intense {
+  box-shadow: 
+    0 8px 40px rgba(6, 182, 212, 0.2),
+    0 4px 20px rgba(236, 72, 153, 0.1),
+    0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Hover states */
+.card-glow:hover {
+  box-shadow: 
+    0 8px 30px rgba(6, 182, 212, 0.15),
+    0 4px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.card-glow-intense:hover {
+  box-shadow: 
+    0 12px 60px rgba(6, 182, 212, 0.25),
+    0 8px 30px rgba(236, 72, 153, 0.15),
+    0 4px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+}

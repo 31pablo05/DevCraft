@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef } from "react"
 import { Card, CardContent } from "./ui/Card";
 import { Badge } from "./ui/Badge";
 import { Code2, Palette, Wrench, Layers, Smartphone, Monitor, Github, Database, Award, ExternalLink, X, ChevronRight, Sparkles, Zap, TrendingUp } from "lucide-react"
@@ -8,27 +8,7 @@ import { Code2, Palette, Wrench, Layers, Smartphone, Monitor, Github, Database, 
 export default function SkillsSection() {
   const [selectedCert, setSelectedCert] = useState(null)
   const [showAllCerts, setShowAllCerts] = useState(false)
-  const [hoveredSkill, setHoveredSkill] = useState(null)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const sectionRef = useRef(null)
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect()
-        setMousePosition({
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top
-        })
-      }
-    }
-
-    const section = sectionRef.current
-    if (section) {
-      section.addEventListener('mousemove', handleMouseMove)
-      return () => section.removeEventListener('mousemove', handleMouseMove)
-    }
-  }, [])
 
   const certifications = [
     {
@@ -261,14 +241,7 @@ export default function SkillsSection() {
     { name: "MongoDB", level: 65, color: "from-[#2a045a] via-[#550c83] to-[#3e6cde]", icon: <Database className="w-5 h-5" />, description: "Base de datos NoSQL" },
   ]
 
-  const particles = Array.from({ length: 30 }, (_, i) => ({
-    id: i,
-    size: Math.random() * 4 + 2,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    duration: Math.random() * 20 + 15,
-    delay: Math.random() * 5
-  }))
+
 
   return (
     <section 
@@ -286,46 +259,20 @@ export default function SkillsSection() {
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#550c83]/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#2a045a]/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
         
-        {/* Floating Particles */}
-        {particles.map((particle) => (
-          <div
-            key={particle.id}
-            className="absolute rounded-full opacity-30"
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              width: `${particle.size}px`,
-              height: `${particle.size}px`,
-              background: `linear-gradient(135deg, #3e6cde, #550c83)`,
-              animation: `float ${particle.duration}s ease-in-out infinite`,
-              animationDelay: `${particle.delay}s`,
-              boxShadow: '0 0 20px rgba(62, 108, 222, 0.5)'
-            }}
-          />
-        ))}
-
-        {/* Mouse Follow Gradient */}
-        <div 
-          className="absolute w-96 h-96 bg-gradient-radial from-[#3e6cde]/20 via-[#550c83]/10 to-transparent rounded-full blur-3xl transition-all duration-300 pointer-events-none"
-          style={{
-            left: `${mousePosition.x}px`,
-            top: `${mousePosition.y}px`,
-            transform: 'translate(-50%, -50%)'
-          }}
-        />
+        {/* Floating Particles eliminadas para optimizar rendimiento */}
       </div>
 
       <div className="container mx-auto max-w-7xl relative z-10">
         {/* Header with Enhanced Animation */}
         <div className="text-center mb-20 space-y-6">
           <div className="inline-flex items-center gap-3 bg-gradient-to-r from-[#3e6cde]/10 to-[#550c83]/10 backdrop-blur-sm border border-[#3e6cde]/20 rounded-full px-6 py-3 mb-6">
-            <Sparkles className="w-5 h-5 text-[#3e6cde] animate-pulse" />
-            <span className="text-[#fcfdff] font-medium">Stack Tecnológico Profesional</span>
-            <Zap className="w-5 h-5 text-[#550c83] animate-pulse" />
+            
+            <span className="text-[#fcfdff] font-medium">Stack Tecnológico</span>
+            
           </div>
           
           <h2 className="text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#3e6cde] via-[#550c83] to-[#3e6cde] mb-6 skills-animate-gradient bg-[length:200%_auto]">
-            Habilidades & Expertise
+            Habilidades & Experiencias
           </h2>
           
           <div className="flex items-center justify-center gap-4 mb-6">
@@ -353,8 +300,6 @@ export default function SkillsSection() {
             {coreSkills.map((skill, index) => (
               <div 
                 key={skill.name}
-                onMouseEnter={() => setHoveredSkill(skill.name)}
-                onMouseLeave={() => setHoveredSkill(null)}
                 className="group relative"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
@@ -381,20 +326,13 @@ export default function SkillsSection() {
                   </div>
                   
                   {/* Progress Bar */}
-                  <div className="relative h-3 bg-slate-800/50 rounded-full overflow-hidden">
-                    <div 
-                      className={`h-full bg-gradient-to-r ${skill.color} rounded-full relative overflow-hidden transition-all duration-1000 ease-out shadow-lg`}
-                      style={{ 
-                        width: hoveredSkill === skill.name ? '100%' : `${skill.level}%`,
-                      }}
-                    >
-                      <div className="absolute inset-0 bg-white/20 skills-animate-shimmer"></div>
-                    </div>
+                  <div className="w-full h-2 bg-slate-700/50 rounded-full">
+                    <div className="h-full bg-gradient-to-r from-[#3e6cde] to-[#550c83] rounded-full" style={{ width: `${skill.level}%` }}></div>
                   </div>
                   
                   {/* Hover Indicator */}
                   <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <Sparkles className="w-5 h-5 text-[#fcfdff] animate-pulse" />
+                    
                   </div>
                 </div>
               </div>
@@ -436,7 +374,6 @@ export default function SkillsSection() {
                       className={`h-full bg-gradient-to-r ${tool.color} rounded-full transition-all duration-1000 ease-out shadow-lg`}
                       style={{ width: `${tool.level}%` }}
                     >
-                      <div className="absolute inset-0 bg-white/20 skills-animate-shimmer"></div>
                     </div>
                   </div>
                 </div>

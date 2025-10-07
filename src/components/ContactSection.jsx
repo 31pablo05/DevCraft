@@ -10,7 +10,6 @@ import { Mail, Phone, MapPin, Linkedin, Github, Send, MessageCircle, Instagram, 
 export default function ContactSection() {
   const [isVisible, setIsVisible] = useState(false)
   const [formAnimated, setFormAnimated] = useState(false)
-  const [particles, setParticles] = useState([])
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -35,25 +34,7 @@ export default function ContactSection() {
     }
   }
 
-  // Generar partículas para el fondo
-  useEffect(() => {
-    const generateParticles = () => {
-      const newParticles = []
-      for (let i = 0; i < 25; i++) {
-        newParticles.push({
-          id: i,
-          x: Math.random() * 100,
-          y: Math.random() * 100,
-          size: Math.random() * 4 + 1,
-          opacity: Math.random() * 0.6 + 0.2,
-          moveX: (Math.random() - 0.5) * 0.4,
-          moveY: (Math.random() - 0.5) * 0.4,
-        })
-      }
-      setParticles(newParticles)
-    }
-    generateParticles()
-  }, [])
+
 
   // Intersection Observer para animaciones
   useEffect(() => {
@@ -76,21 +57,7 @@ export default function ContactSection() {
     return () => observer.disconnect()
   }, [])
 
-  // Animar partículas
-  useEffect(() => {
-    const animateParticles = () => {
-      setParticles(prev => prev.map(particle => ({
-        ...particle,
-        x: Math.max(3, Math.min(97, particle.x + particle.moveX)),
-        y: Math.max(3, Math.min(97, particle.y + particle.moveY)),
-        moveX: particle.x <= 3 || particle.x >= 97 ? -particle.moveX : particle.moveX,
-        moveY: particle.y <= 3 || particle.y >= 97 ? -particle.moveY : particle.moveY,
-      })))
-    }
 
-    const interval = setInterval(animateParticles, 100)
-    return () => clearInterval(interval)
-  }, [])
 
   // Manejar cambios en el formulario
   const handleInputChange = (e) => {
@@ -144,78 +111,61 @@ Enviado desde tu portfolio web 🌐`
       id="contacto" 
       className="pt-2 sm:py-16 lg:py-20 px-3 sm:px-4 relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
     >
-      {/* Animated Background */}
+      {/* Simplified Background */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/10 to-slate-900"></div>
         
-        {/* Floating particles */}
-        {particles.map((particle) => (
-          <div
-            key={particle.id}
-            className="absolute w-1 h-1 bg-gradient-to-r from-cyan-400 to-pink-400 rounded-full opacity-30 animate-pulse"
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              width: `${particle.size}px`,
-              height: `${particle.size}px`,
-              opacity: particle.opacity,
-            }}
-          />
-        ))}
-
-        {/* Background gradients */}
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-r from-cyan-400/5 to-blue-600/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-80 h-80 sm:w-[28rem] sm:h-[28rem] bg-gradient-to-r from-pink-400/5 to-purple-600/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        {/* Static background gradients */}
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-r from-cyan-400/5 to-blue-600/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/3 right-1/3 w-80 h-80 sm:w-[28rem] sm:h-[28rem] bg-gradient-to-r from-pink-400/5 to-purple-600/5 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="container mx-auto max-w-6xl relative z-10">
+      <div className="container mx-auto max-w-6xl relative z-20">
         {/* Enhanced Header */}
-  <div className={`text-center mb-0 sm:mb-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-  <div className="flex items-center justify-center mb-0 sm:mb-3">
+        <div className={`text-center mb-6 sm:mb-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="flex items-center justify-center mb-3 sm:mb-4">
             <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400 mr-3" />
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">
               Contacto
             </h2>
             <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-pink-400 ml-3" />
           </div>
-        <p className="text-slate-300 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto mb-0 sm:mb-4 px-4 leading-relaxed">
+          <p className="text-slate-300 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto mb-4 sm:mb-6 px-4 leading-relaxed">
             ¿Tienes un proyecto en mente? Me encantaría escuchar tus ideas y ayudarte a hacerlas realidad
           </p>
-        <div className=" w-20 sm:w-24 h-1 bg-gradient-to-r from-cyan-400 to-pink-400 rounded-full mx-auto mt-0"></div>
-  </div>
-  {/* Elimina margen inferior del header en mobile */}
+          <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-cyan-400 to-pink-400 rounded-full mx-auto"></div>
+        </div>
 
-        {/* WhatsApp CTA Destacado */}
-        <div className={`text-center mb-4 sm:mb-8 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="glass-effect p-2 sm:p-6 rounded-2xl max-w-2xl mx-auto card-glow-intense mt-1 mb-0">
-            <div className="flex items-center justify-center mb-3">
-              <MessageCircle className="w-8 h-8 sm:w-10 sm:h-10 text-green-400 mr-3" />
-              <h3 className="text-xl sm:text-2xl font-bold text-slate-100">¡Hablemos por WhatsApp!</h3>
+        {/* WhatsApp CTA Destacado - SIMPLIFICADO */}
+        <div className="text-center mb-8 sm:mb-12">
+          <div className="bg-green-800 border-2 border-green-500 p-6 rounded-xl max-w-2xl mx-auto">
+            <div className="flex items-center justify-center mb-4">
+              <MessageCircle className="w-10 h-10 text-green-400 mr-3" />
+              <h3 className="text-2xl font-bold text-white">¡Hablemos por WhatsApp!</h3>
             </div>
-            <p className="text-slate-300 mb-4">
+            <p className="text-green-100 mb-6">
               La forma más rápida de contactarme. Te respondo en minutos 🚀
             </p>
             <Button
               onClick={() => window.open(`https://wa.me/${contactInfo.whatsapp}?text=¡Hola Pablo! Me interesa conocer más sobre tus servicios de desarrollo web 👋`, '_blank')}
-              size="lg"
-              className="bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:from-green-400 hover:via-green-500 hover:to-green-600 text-white px-8 py-3 rounded-full font-medium transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 card-glow-intense"
+              className="bg-green-500 hover:bg-green-400 text-white px-8 py-4 rounded-full font-bold text-lg"
             >
-              <MessageCircle className="w-5 h-5 mr-2" />
+              <MessageCircle className="w-6 h-6 mr-2" />
               <span>Contactar por WhatsApp</span>
-              <ArrowRight className="w-5 h-5 ml-2" />
+              <ArrowRight className="w-6 h-6 ml-2" />
             </Button>
           </div>
         </div>
 
-  <div className="grid lg:grid-cols-2 gap-2 lg:gap-12 mb-0">
+        <div className="grid lg:grid-cols-2 gap-4 lg:gap-8 mb-0">
           {/* Contact Information */}
-          <div className={`space-y-6 sm:space-y-8 order-2 lg:order-1 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
+          <div className={`space-y-4 sm:space-y-6 order-2 lg:order-1 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-slate-100 mb-6 text-center lg:text-left flex items-center">
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-100 mb-4 text-center lg:text-left flex items-center">
                 <Mail className="w-6 h-6 mr-2 text-cyan-400" />
                 Información de contacto
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {/* Email */}
                 <div className="group glass-effect rounded-xl p-4 sm:p-5 card-glow hover:card-glow-intense transition-all duration-300 cursor-pointer"
                      onClick={() => copyToClipboard(contactInfo.email, 'email')}>
@@ -281,7 +231,7 @@ Enviado desde tu portfolio web 🌐`
 
             {/* Social Media */}
             <div className="text-center lg:text-left">
-              <h4 className="text-lg sm:text-xl font-bold text-slate-100 mb-6 flex items-center justify-center lg:justify-start">
+              <h4 className="text-lg sm:text-xl font-bold text-slate-100 mb-4 flex items-center justify-center lg:justify-start">
                 <Sparkles className="w-5 h-5 mr-2 text-purple-400" />
                 Sígueme en redes sociales
               </h4>
@@ -328,8 +278,8 @@ Enviado desde tu portfolio web 🌐`
 
           {/* Contact Form */}
           <div className={`order-1 lg:order-2 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-            <div className="glass-effect rounded-2xl p-2 sm:p-8 card-glow-intense mt-0 mb-0">
-              <div className="text-center mb-6">
+            <div className="glass-effect rounded-2xl p-4 sm:p-6 card-glow-intense">
+              <div className="text-center mb-4">
                 <h3 className="text-xl sm:text-2xl font-bold text-slate-100 mb-2 flex items-center justify-center">
                   <Send className="w-6 h-6 mr-2 text-cyan-400" />
                   Envíame un mensaje
@@ -339,7 +289,7 @@ Enviado desde tu portfolio web 🌐`
                 </p>
               </div>
               
-              <div className={`space-y-4 sm:space-y-6 transition-all duration-500 ${formAnimated ? 'opacity-100' : 'opacity-0'}`}>
+              <div className={`space-y-4 transition-all duration-500 ${formAnimated ? 'opacity-100' : 'opacity-0'}`}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="text-sm font-medium text-slate-300 mb-2 block">Nombre *</label>
