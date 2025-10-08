@@ -1,139 +1,111 @@
-import React, { useState, useRef, useEffect } from "react"
-import { Play, Pause, Volume2, VolumeX, RotateCcw } from "lucide-react"
+import React, { useState, useRef } from "react"
+import { Play, Pause } from "lucide-react"
 
-const VideoPlayer = React.memo(({ videoSrc, posterSrc, onLoadStart, onCanPlay }) => {
+const VideoPlayer = React.memo(({ videoSrc, posterSrc, title }) => {
+  const [showVideo, setShowVideo] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
-  const [isMuted, setIsMuted] = useState(true)
-  const [isLoading, setIsLoading] = useState(true)
-  const [showControls, setShowControls] = useState(false)
-  const [isInView, setIsInView] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const videoRef = useRef(null)
-  const containerRef = useRef(null)
 
-  // Intersection Observer para lazy loading
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true)
-          observer.disconnect() // Solo cargar una vez
-        }
-      },
-      { threshold: 0.1, rootMargin: '50px' }
-    )
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  const handlePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) videoRef.current.pause()
-      else videoRef.current.play()
-      setIsPlaying(!isPlaying)
+  const handlePlayClick = () => {
+    if (!showVideo) {
+      // Primera vez: mostrar video y empezar a cargarlo
+      setShowVideo(true)
+      setIsLoading(true)
+    } else {
+      // Video ya cargado: play/pause
+      if (isPlaying) {
+        videoRef.current?.pause()
+      } else {
+        videoRef.current?.play()
+      }
     }
   }
-  const handleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted
-      setIsMuted(!isMuted)
-    }
-  }
-  const handleRestart = () => {
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0
-      videoRef.current.play()
-      setIsPlaying(true)
-    }
-  }
-  const handleLoadStart = () => {
-    setIsLoading(true)
-    onLoadStart && onLoadStart()
-  }
-  const handleCanPlay = () => {
+
+  const handleVideoReady = () => {
     setIsLoading(false)
-    onCanPlay && onCanPlay()
+    // Auto-play cuando el video esté listo
+    if (videoRef.current) {
+      videoRef.current.play()
+    }
   }
 
   return (
-    <div 
-      ref={containerRef}
-      className="relative w-full h-full group cursor-pointer"
-      onMouseEnter={() => setShowControls(true)}
-      onMouseLeave={() => setShowControls(false)}
-    >
-      {isInView ? (
-        <video
-          ref={videoRef}
-          src={videoSrc}
-          poster={posterSrc}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          onLoadStart={handleLoadStart}
-          onCanPlay={handleCanPlay}
-          onPlay={() => setIsPlaying(true)}
-          onPause={() => setIsPlaying(false)}
-          loop
-          playsInline
-          muted={isMuted}
-          width="515"
-          height="256"
-          loading="lazy"
-          fetchpriority="low"
-          preload="none"
-        />
-      ) : (
-        <div 
-          className="w-full h-full bg-slate-800 flex items-center justify-center"
-          style={{
-            backgroundImage: posterSrc ? `url(${posterSrc})` : 'none',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }}
-        >
-          <div className="bg-black/50 p-3 rounded-full">
-            <Play className="w-8 h-8 text-white" />
+    <div className="relative w-full h-full group cursor-pointer overflow-hidden">
+      {/* Poster Image - Siempre visible hasta que se active el video */}
+      {!showVideo && (
+        <>
+          <img
+            src={posterSrc}
+            alt={`${title} preview`}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+          {/* Overlay con botón de play grande */}
+          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">
+            <button
+              onClick={handlePlayClick}
+              className="bg-white/10 hover:bg-white/20 text-white border border-white/30 rounded-full p-6 transform hover:scale-110 transition-all duration-300 shadow-xl"
+              aria-label="Ver demo del proyecto"
+            >
+              <Play className="w-8 h-8 ml-1" />
+            </button>
           </div>
-        </div>
-      )}
-      {isLoading && (
-        <div className="absolute inset-0 bg-slate-800/50 flex items-center justify-center">
-          <div className="flex flex-col items-center space-y-2">
-            <div className="w-8 h-8 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin"></div>
-            <span className="text-white text-sm">Cargando video...</span>
+          {/* Indicador de demo */}
+          <div className="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs flex items-center gap-2">
+            <Play className="w-3 h-3" />
+            <span>Ver Demo</span>
           </div>
-        </div>
+        </>
       )}
-      <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="absolute bottom-4 left-4 right-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <button
-                onClick={handlePlay}
-                className="bg-white/20 backdrop-blur-sm text-white p-2 rounded-full hover:bg-white/30 transition-all duration-300"
-              >
-                {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-              </button>
-              <button
-                onClick={handleMute}
-                className="bg-white/20 backdrop-blur-sm text-white p-2 rounded-full hover:bg-white/30 transition-all duration-300"
-              >
-                {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-              </button>
-              <button
-                onClick={handleRestart}
-                className="bg-white/20 backdrop-blur-sm text-white p-2 rounded-full hover:bg-white/30 transition-all duration-300"
-              >
-                <RotateCcw className="w-4 h-4" />
-              </button>
+
+      {/* Video - Solo se carga cuando es necesario */}
+      {showVideo && (
+        <>
+          <video
+            ref={videoRef}
+            className="w-full h-full object-cover"
+            loop
+            playsInline
+            onLoadedData={handleVideoReady}
+            onPlay={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
+            preload="none"
+          >
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+
+          {/* Loading state solo cuando se está cargando */}
+          {isLoading && (
+            <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
+              <div className="text-center text-white">
+                <div className="w-8 h-8 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin mb-3 mx-auto"></div>
+                <p className="text-sm">Cargando demo...</p>
+              </div>
+            </div>
+          )}
+
+          {/* Controles del video */}
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300">
+            <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={handlePlayClick}
+                    className="bg-white/20 backdrop-blur-sm text-white p-2 rounded-full hover:bg-white/30 transition-all duration-300"
+                    aria-label={isPlaying ? "Pausar" : "Reproducir"}
+                  >
+                    {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   )
 })
 
+VideoPlayer.displayName = 'VideoPlayer'
 export default VideoPlayer
