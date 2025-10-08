@@ -304,7 +304,7 @@ teamSize: 1
 	category: "tools",
 	github: "https://github.com/31pablo05/HerramientaBuloneria",
 	demo: "https://herramienta-buloneria.vercel.app/",
-	videoSrc: "/videosProjects/TrueColor.mp4",
+	videoSrc: "/videosProjects/HerramientaBuloneria.mp4",
 	posterSrc: "/posters/posterBuloneria.webp",
 	featured: true,
 	status: "Desarrollo",
