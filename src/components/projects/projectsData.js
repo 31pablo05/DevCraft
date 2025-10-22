@@ -296,7 +296,7 @@ teamSize: 1
 	teamSize: 1
 	},
 	{
-		id: 16,
+		id: 15,
 	title: "Identificador de Bulones – Herramienta Web",
 	subtitle: "Diferenciación por Métrica, Whitworth y Paso de Hilo",
 	description: "Desarrollé una herramienta web especializada para facilitar la identificación de bulones y tornillos en ferreterías y bulonerías. Permite al empleado reconocer rápidamente el diámetro, tipo de rosca (métrica o Whitworth) y distinguir si es paso fino o común. Su objetivo es agilizar la búsqueda del bulón correcto, reducir errores y optimizar la atención al cliente.",
@@ -316,6 +316,48 @@ teamSize: 1
 	clientType: "Ferreterías y Bulonerías",
 	teamSize: 1
 	},
+	{
+		id: 16,
+		title: "Recetas Pasteleras · Astro Demo",
+		subtitle: "Web de recetas, ingredientes y tips de pastelería",
+		description: "Demostración de una web para mostrar recetas de pastelería, ingredientes, tips y consejos. Ideal para el mundo gastronómico, pastelería, galletitas y repostería. Desarrollada con Astro, Tailwind CSS y TypeScript.",
+		technologies: ["Astro", "Tailwind CSS", "TypeScript"],
+		category: "gastronomia",
+		github: "",
+		demo: "",
+		videoSrc: "",
+		posterSrc: "/posters/posterrecetariodemo.webp",
+		featured: false,
+		status: "Demo",
+		detailedStatus: "Proyecto demostrativo para mostrar recetas y tips de pastelería",
+		progress: 100,
+		icon: "Cookie",
+		startDate: "2025-10",
+		endDate: "",
+		clientType: "Gastronomía / Pastelería",
+		teamSize: 1
+	},
+	{
+		id: 17,
+		title: "Vivero Patagonia · SPA Demo",
+		subtitle: "Web de vivero, servicios, galería y contacto en una sola página",
+		description: "Demostración de una web para un vivero, desarrollada con Astro y Tailwind CSS. Es una SPA donde toda la navegación se realiza en la misma página mediante scroll. Incluye inicio, servicios, galería de plantas y contacto con ubicación y horarios. Ideal para mostrar el catálogo y facilitar la comunicación con clientes.",
+		technologies: ["Astro", "Tailwind CSS", "TypeScript"],
+		category: "vivero",
+		github: "",
+		demo: "",
+		videoSrc: "",
+		posterSrc: "/posters/posterviverodemo.webp",
+		featured: false,
+		status: "Demo",
+		detailedStatus: "SPA demostrativa para viveros, con navegación y secciones integradas en una sola página.",
+		progress: 100,
+		icon: "Leaf",
+		startDate: "2025-10",
+		endDate: "",
+		clientType: "Vivero / Jardinería",
+		teamSize: 1
+	}
 ];
 
 export default projects;
