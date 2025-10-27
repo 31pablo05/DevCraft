@@ -378,6 +378,48 @@ teamSize: 1
 		endDate: "",
 		clientType: "Juegos / PWA",
 		teamSize: 1
+	},
+	{
+		id: 19,
+		title: "Curso de Fotografía · Landing Page",
+		subtitle: "Landing para promocionar cursos de fotografía profesional",
+		description: "Landing page diseñada para promocionar cursos de fotografía. Incluye información del curso, temario, instructor, testimonios y formulario de inscripción. Optimizada para captar estudiantes interesados en aprender técnicas fotográficas profesionales. Diseño atractivo con galería de trabajos y llamadas a la acción claras.",
+		technologies: ["React", "Tailwind CSS", "JavaScript", "CSS"],
+		category: "educacion",
+		github: "",
+		demo: "",
+		videoSrc: "",
+		posterSrc: "",
+		featured: false,
+		status: "Demo",
+		detailedStatus: "Landing page demostrativa para promocionar cursos de fotografía",
+		progress: 100,
+		icon: "Camera",
+		startDate: "2025-10",
+		endDate: "",
+		clientType: "Educación / Fotografía",
+		teamSize: 1
+	},
+	{
+		id: 20,
+		title: "Curso de Repostería · Landing Page",
+		subtitle: "Landing para promocionar cursos de pastelería y repostería",
+		description: "Landing page especializada en promocionar cursos de repostería y pastelería. Presenta la oferta educativa, recetas destacadas, perfil del instructor, horarios disponibles y sistema de inscripción. Diseñada para atraer estudiantes apasionados por la repostería y convertir visitantes en alumnos inscritos.",
+		technologies: ["React", "Tailwind CSS", "JavaScript", "CSS"],
+		category: "educacion",
+		github: "",
+		demo: "",
+		videoSrc: "",
+		posterSrc: "",
+		featured: false,
+		status: "Demo",
+		detailedStatus: "Landing page demostrativa para promocionar cursos de repostería",
+		progress: 100,
+		icon: "ChefHat",
+		startDate: "2025-10",
+		endDate: "",
+		clientType: "Educación / Repostería",
+		teamSize: 1
 	}
 ];
 
