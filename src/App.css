@@ -1,15 +1,6 @@
 /* App.css - Estilos personalizados para el portfolio */
 
-/* Prevenir overflow horizontal */
-* {
-  box-sizing: border-box;
-}
-
-html, body {
-  overflow-x: hidden;
-  width: 100%;
-}
-
+/* Contenedor principal sin conflictos con index.css */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -23,13 +14,8 @@ html, body {
     padding: 0 0.75rem;
   }
   
-  /* Fix para elementos que puedan causar overflow horizontal */
-  body {
-    overflow-x: hidden;
-  }
-  
   /* Permitir que las sombras y efectos se muestren completamente */
-  .card-glow, .card-glow-intense, .glass-effect {
+  .contact-card-glow, .contact-card-glow-intense, .contact-glass-effect {
     margin: 10px;
   }
   
@@ -165,13 +151,8 @@ html, body {
   left: 100%;
 }
 
-/* Efectos de parallax suaves */
-.parallax-element {
-  will-change: transform;
-}
-
 /* Permitir que los efectos visuales se muestren completamente */
-.glass-effect, .card-glow, .card-glow-intense {
+.contact-glass-effect, .contact-card-glow, .contact-card-glow-intense {
   position: relative;
   z-index: 1;
 }
@@ -229,23 +210,20 @@ footer, #contacto {
    ESTILOS Y ANIMACIONES DEL HEADER
    ============================================ */
 
-/* Animaciones del Header */
+/* Animaciones del Header - Optimizadas para mejor scroll */
 @keyframes header-float {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  25% { transform: translateY(-8px) rotate(3deg); }
-  50% { transform: translateY(-4px) rotate(-3deg); }
-  75% { transform: translateY(-12px) rotate(2deg); }
+  50% { transform: translateY(-6px) rotate(2deg); }
 }
 
 @keyframes header-glow-pulse {
   0%, 100% { 
-    filter: drop-shadow(0 0 8px rgba(62, 112, 224, 0.6)) 
-            drop-shadow(0 0 16px rgba(97, 5, 147, 0.4));
+    filter: drop-shadow(0 0 6px rgba(62, 112, 224, 0.4)) 
+            drop-shadow(0 0 12px rgba(97, 5, 147, 0.3));
   }
   50% { 
-    filter: drop-shadow(0 0 16px rgba(62, 112, 224, 0.9)) 
-            drop-shadow(0 0 24px rgba(97, 5, 147, 0.6))
-            drop-shadow(0 0 32px rgba(41, 2, 88, 0.4));
+    filter: drop-shadow(0 0 10px rgba(62, 112, 224, 0.6)) 
+            drop-shadow(0 0 16px rgba(97, 5, 147, 0.4));
   }
 }
 
@@ -298,8 +276,9 @@ footer, #contacto {
     rgba(41, 2, 88, 0.85) 50%,
     rgba(0, 0, 0, 0.9) 100%
   );
-  backdrop-filter: blur(12px);
-  box-shadow: 0 4px 30px rgba(97, 5, 147, 0.3);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 20px rgba(97, 5, 147, 0.2);
+  transition: all 0.3s ease;
 }
 
 .header-glass-header-scrolled {
@@ -308,9 +287,9 @@ footer, #contacto {
     rgba(41, 2, 88, 0.92) 50%,
     rgba(0, 0, 0, 0.95) 100%
   );
-  backdrop-filter: blur(20px);
-  box-shadow: 0 8px 40px rgba(97, 5, 147, 0.5),
-              0 2px 10px rgba(62, 112, 224, 0.3);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 30px rgba(97, 5, 147, 0.3);
+  transition: all 0.3s ease;
 }
 
 .header-mobile-menu-bg {
@@ -323,16 +302,15 @@ footer, #contacto {
 }
 
 .header-button-glow {
-  box-shadow: 0 0 20px rgba(62, 112, 224, 0.4),
-              0 0 40px rgba(97, 5, 147, 0.2);
+  box-shadow: 0 0 15px rgba(62, 112, 224, 0.3),
+              0 0 25px rgba(97, 5, 147, 0.2);
   transition: all 0.3s ease;
 }
 
 .header-button-glow:hover {
-  box-shadow: 0 0 30px rgba(62, 112, 224, 0.6),
-              0 0 60px rgba(97, 5, 147, 0.4),
-              0 0 80px rgba(41, 2, 88, 0.3);
-  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(62, 112, 224, 0.4),
+              0 0 35px rgba(97, 5, 147, 0.3);
+  transform: translateY(-1px);
 }
 
 .header-nav-underline {
@@ -755,8 +733,8 @@ footer, #contacto {
    EFECTOS GLASS Y GLOW PARA CONTACT SECTION
    ============================================ */
 
-/* Efecto de cristal */
-.glass-effect {
+/* Efecto de cristal específico para Contact - Sin conflictos con index.css */
+.contact-glass-effect {
   background: rgba(15, 23, 42, 0.6);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(148, 163, 184, 0.1);
@@ -764,16 +742,15 @@ footer, #contacto {
   z-index: 1;
 }
 
-/* Efecto de brillo suave */
-.card-glow {
+/* Efectos de brillo específicos para Contact */
+.contact-card-glow {
   box-shadow: 
     0 4px 20px rgba(6, 182, 212, 0.1),
     0 1px 3px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
 
-/* Efecto de brillo intenso */
-.card-glow-intense {
+.contact-card-glow-intense {
   box-shadow: 
     0 8px 40px rgba(6, 182, 212, 0.2),
     0 4px 20px rgba(236, 72, 153, 0.1),
@@ -781,15 +758,15 @@ footer, #contacto {
   transition: all 0.3s ease;
 }
 
-/* Hover states */
-.card-glow:hover {
+/* Hover states específicos para Contact */
+.contact-card-glow:hover {
   box-shadow: 
     0 8px 30px rgba(6, 182, 212, 0.15),
     0 4px 15px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
 }
 
-.card-glow-intense:hover {
+.contact-card-glow-intense:hover {
   box-shadow: 
     0 12px 60px rgba(6, 182, 212, 0.25),
     0 8px 30px rgba(236, 72, 153, 0.15),

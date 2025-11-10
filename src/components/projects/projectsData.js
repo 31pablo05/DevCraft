@@ -8,7 +8,7 @@ const projects = [
 		category: "ecommerce",
 		github: "https://github.com/31pablo05/MaestraPatagonica",
 		demo: "https://maestra-patagonica.vercel.app/inicio",
-		videoSrc: "/videosProjects/MaestraPatagonica.mp4",
+		videoSrc: "cha/videosProjects/MaestraPatagonica.mp4",
 		posterSrc: "/posters/posterMaestraPatagonica.webp",
 		featured: true,
 		status: "Desarrollo",

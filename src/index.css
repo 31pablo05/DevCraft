@@ -20,18 +20,26 @@
   --accent-dark: #db2777;
 }
 
-/* Estilos base */
+/* SOLUCIÓN DEFINITIVA para scroll único */
 * {
   border-color: var(--border);
+  box-sizing: border-box;
 }
 
-/* Prevenir scroll horizontal */
-html, body {
+html {
   overflow-x: hidden;
-  max-width: 100vw;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
 }
 
 body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-width: 100vw;
+  width: 100%;
   background: linear-gradient(135deg, #0c0a1e 0%, #1a1332 35%, #312e81 70%, #4c1d95 100%);
   background-attachment: fixed;
   color: var(--foreground);
@@ -39,7 +47,13 @@ body {
   position: relative;
 }
 
-/* Efectos de fondo animados */
+/* Esconder scrollbar completamente */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Efectos de fondo animados - Simplificados */
 body::before {
   content: '';
   position: fixed;
@@ -62,37 +76,9 @@ body::before {
   75% { transform: translate(20px, 30px) rotate(270deg); }
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
+/* Eliminar toda configuración de scrollbar personalizada para evitar duplicación */
 
-/* Custom scrollbar - Hidden for cleaner design */
-::-webkit-scrollbar {
-  width: 0px;
-  background: transparent;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: transparent;
-  border-radius: 0px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: transparent;
-}
-
-/* Alternative method to hide scrollbar */
-* {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer and Edge */
-}
-
-/* Clases utilitarias para efectos modernos */
+/* Clases utilitarias para efectos modernos - Sin conflictos */
 .glass-effect {
   background: rgba(26, 19, 50, 0.8);
   backdrop-filter: blur(16px);
@@ -115,7 +101,7 @@ html {
   box-shadow: 
     0 0 40px rgba(6, 182, 212, 0.15),
     0 8px 32px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card-glow:hover {
@@ -126,6 +112,7 @@ html {
   transform: translateY(-5px);
 }
 
+/* Animaciones simplificadas para mejor rendimiento */
 .pulse-animation {
   animation: pulse 2s infinite;
 }
@@ -268,7 +255,7 @@ html {
   backface-visibility: hidden;
 }
 
-/* Floating Animations with Different Speeds */
+/* Floating Animations simplificadas */
 .floating-slow {
   animation: floating-slow 4s ease-in-out infinite;
 }
@@ -337,10 +324,7 @@ html {
   animation: morphing-gradient 8s ease infinite;
 }
 
-/* Smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
-}
+/* Eliminar duplicación de scroll-behavior */
 
 /* Focus styles for accessibility */
 button:focus-visible, 
@@ -413,10 +397,7 @@ a:focus-visible {
   overflow-y: visible;
 }
 
-/* Ensure no horizontal scroll */
-body {
-  overflow-x: hidden;
-}
+/* Ensure no horizontal scroll - ÚNICA declaración */
 
 /* Better responsive spacing for image section */
 @media (min-width: 1024px) {
@@ -466,4 +447,16 @@ body {
   .transform-gpu {
     transform: none;
   }
+}
+
+/* Optimizaciones básicas para scroll fluido - Sin conflictos */
+* {
+  /* Optimización hardware acceleration básica */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scroll momentum nativo simplificado */
+body {
+  -webkit-overflow-scrolling: touch;
 }
