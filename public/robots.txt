@@ -1,16 +1,30 @@
-# Robots.txt para Pablo Proboste Portfolio
-# https://dev-craft-lake.vercel.app
+# Robots.txt para Pablo Proboste Portfolio - Desarrollador Web React Tailwind Vite
+# https://devcraftpablo.online
 
+# Permitir a todos los bots principales
 User-agent: *
 Allow: /
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /vite.config.js
+Disallow: /tailwind.config.js
+Disallow: /postcss.config.js
+Disallow: /eslint.config.js
+Disallow: /package.json
+Disallow: /package-lock.json
 
-# Permitir específicamente a los principales bots
+# Googlebot - permitir crawl más agresivo
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
 
+# Bingbot
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
+# Otros bots principales
 User-agent: Slurp
 Allow: /
 
@@ -23,6 +37,7 @@ Allow: /
 User-agent: YandexBot
 Allow: /
 
+# Bots de redes sociales
 User-agent: facebookexternalhit
 Allow: /
 
@@ -32,25 +47,15 @@ Allow: /
 User-agent: LinkedInBot
 Allow: /
 
-# Desallow archivos y directorios no necesarios
-Disallow: /src/
-Disallow: /node_modules/
-Disallow: /*.json$
-Disallow: /vite.config.js
-Disallow: /tailwind.config.js
-Disallow: /postcss.config.js
-Disallow: /eslint.config.js
-Disallow: /package.json
-Disallow: /package-lock.json
-
 # Permitir archivos importantes
 Allow: /assets/
 Allow: /favicon.ico
 Allow: /sitemap.xml
 Allow: /manifest.json
+Allow: /robots.txt
 
 # Sitemap location
-Sitemap: https://dev-craft-lake.vercel.app/sitemap.xml
+Sitemap: https://devcraftpablo.online/sitemap.xml
 
-# Crawl delay para ser considerado con los servidores
+# Crawl delay general
 Crawl-delay: 1
