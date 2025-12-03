@@ -69,8 +69,8 @@ export default function Header() {
   // Función para descargar CV
   const downloadCV = () => {
     const link = document.createElement('a')
-    link.href = '/CV/CV-PabloProboste DesarrolladorFrontend.pdf'
-    link.download = 'CV-PabloProboste-DesarrolladorFrontend.pdf'
+    link.href = '/CV/CV-PabloProboste Desarollador.pdf'
+    link.download = '/CV/CV-PabloProboste Desarollador.pdf'
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
