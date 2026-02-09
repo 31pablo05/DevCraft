@@ -104,7 +104,7 @@ export default function AboutSection() {
                       loading="lazy" 
                       width="400" 
                       height="400" 
-                      src="/assets/imagenesPerfil/perfil3.svg"
+                      src="/assets/imagenesPerfil/perfil8.png"
                       alt="Pablo Proboste - Desarrollador Full Stack"
                       className="w-full h-auto rounded-2xl sm:rounded-3xl about-shadow-custom transform group-hover:scale-105 transition-all duration-700 relative z-10 about-image-glow"
                     />
