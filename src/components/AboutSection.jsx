@@ -27,6 +27,7 @@ export default function AboutSection() {
   // Animated counter
   useEffect(() => {
     if (isVisible) {
+      let mounted = true
       const targets = { projects: 10, hours: 500, clients: 5, years: 3 }
       const duration = 2000
       const steps = 60
@@ -39,6 +40,7 @@ export default function AboutSection() {
 
       let current = 0
       const timer = setInterval(() => {
+        if (!mounted) return
         current++
         if (current <= steps) {
           setCountUp({
@@ -52,7 +54,10 @@ export default function AboutSection() {
         }
       }, duration / steps)
 
-      return () => clearInterval(timer)
+      return () => {
+        mounted = false
+        clearInterval(timer)
+      }
     }
   }, [isVisible])
 
@@ -104,7 +109,7 @@ export default function AboutSection() {
                       loading="lazy" 
                       width="400" 
                       height="400" 
-                      src="/assets/imagenesPerfil/perfil8.png"
+                      src="/assets/imagenesPerfil/imgabout.png"
                       alt="Pablo Proboste - Desarrollador Full Stack"
                       className="w-full h-auto rounded-2xl sm:rounded-3xl about-shadow-custom transform group-hover:scale-105 transition-all duration-700 relative z-10 about-image-glow"
                     />

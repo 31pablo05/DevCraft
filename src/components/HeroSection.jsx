@@ -1,6 +1,4 @@
-"use client"
-
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "./ui/Button"
 import { ArrowRight, Code2, Palette, Smartphone, Sparkles, Zap, Cpu } from "lucide-react"
 
@@ -8,7 +6,9 @@ const roles = ["Frontend", "React", "JavaScript", "UI/UX"]
 
 export default function HeroSection() {
   const [typedText, setTypedText] = useState("")
-  const [currentRoleIndex, setCurrentRoleIndex] = useState(0)
+  const isDeletingRef = useRef(false)
+  const currentIndexRef = useRef(0)
+  const currentRoleIndexRef = useRef(0)
   
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
@@ -22,31 +22,32 @@ export default function HeroSection() {
     }
   }
 
-  // Typing animation effect
+  // Typing animation effect — uses refs to avoid closure issues with setInterval
   useEffect(() => {
-    const currentRole = roles[currentRoleIndex]
-    let currentIndex = 0
-    let isDeleting = false
-    
-    const typeInterval = setInterval(() => {
-      if (!isDeleting && currentIndex < currentRole.length) {
-        setTypedText(currentRole.substring(0, currentIndex + 1))
-        currentIndex++
-      } else if (!isDeleting && currentIndex === currentRole.length) {
-        setTimeout(() => {
-          isDeleting = true
-        }, 2000)
-      } else if (isDeleting && currentIndex > 0) {
-        setTypedText(currentRole.substring(0, currentIndex - 1))
-        currentIndex--
-      } else if (isDeleting && currentIndex === 0) {
-        isDeleting = false
-        setCurrentRoleIndex((prev) => (prev + 1) % roles.length)
-      }
-    }, isDeleting ? 100 : 150)
+    const tick = () => {
+      const currentRole = roles[currentRoleIndexRef.current]
 
-    return () => clearInterval(typeInterval)
-  }, [currentRoleIndex])
+      if (!isDeletingRef.current) {
+        currentIndexRef.current++
+        setTypedText(currentRole.substring(0, currentIndexRef.current))
+
+        if (currentIndexRef.current === currentRole.length) {
+          setTimeout(() => { isDeletingRef.current = true }, 2000)
+        }
+      } else {
+        currentIndexRef.current--
+        setTypedText(currentRole.substring(0, currentIndexRef.current))
+
+        if (currentIndexRef.current === 0) {
+          isDeletingRef.current = false
+          currentRoleIndexRef.current = (currentRoleIndexRef.current + 1) % roles.length
+        }
+      }
+    }
+
+    const interval = setInterval(tick, isDeletingRef.current ? 80 : 150)
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <section id="inicio" className="relative pt-20 sm:pt-24 pb-16 sm:pb-20 px-2 sm:px-4 w-full max-w-full overflow-x-hidden section-dark min-h-[calc(100vh-5rem)] flex items-center">
@@ -54,10 +55,9 @@ export default function HeroSection() {
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900"></div>
         
-        {/* Morphing Background Blobs - Better positioning */}
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 lg:w-96 lg:h-96 bg-gradient-to-r from-[#3e70e0]/10 to-[#610593]/10 rounded-full blur-3xl animate-pulse transform rotate-45"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-60 h-60 lg:w-80 lg:h-80 bg-gradient-to-r from-[#610593]/10 to-[#290258]/10 rounded-full blur-3xl animate-pulse delay-1000 transform -rotate-45"></div>
-        <div className="absolute top-1/2 left-1/2 w-48 h-48 lg:w-64 lg:h-64 bg-gradient-to-r from-[#3e70e0]/10 to-[#610593]/10 rounded-full blur-3xl animate-pulse delay-2000 transform rotate-90"></div>
+        {/* Morphing Background Blobs - Reduced to 2, slower animation */}
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 lg:w-96 lg:h-96 bg-gradient-to-r from-[#3e70e0]/10 to-[#610593]/10 rounded-full blur-3xl transform rotate-45" style={{ animation: 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite', willChange: 'opacity' }}></div>
+        <div className="absolute bottom-1/4 right-1/4 w-60 h-60 lg:w-80 lg:h-80 bg-gradient-to-r from-[#610593]/10 to-[#290258]/10 rounded-full blur-3xl transform -rotate-45" style={{ animation: 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite', animationDelay: '3s', willChange: 'opacity' }}></div>
       </div>
 
       <div className="container mx-auto max-w-full relative z-10">
@@ -188,7 +188,7 @@ export default function HeroSection() {
               {/* Main Image Container with Better Sizing */}
               <div className="relative transform-gpu group-hover:rotate-y-12 group-hover:rotate-x-6 transition-all duration-700 ease-out px-4 sm:px-6 lg:px-8">
                 <img loading="lazy" width="288" height="288" 
-                  src="/assets/imagenesPerfil/perfil5.svg"
+                  src="/assets/imagenesPerfil/heroconfondo.jpg"
                   alt="Pablo Proboste - Desarrollador Frontend especializado en React y JavaScript"
                   className="w-full h-auto rounded-2xl shadow-2xl max-w-full card-glow-intense transform group-hover:scale-105 transition-all duration-500 aspect-square object-cover"
                 />
@@ -204,10 +204,8 @@ export default function HeroSection() {
               <div className="absolute top-2 right-2 sm:top-4 sm:right-4 w-[calc(100%-1rem)] h-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] sm:h-[calc(100%-2rem)] bg-gradient-to-br from-[#3e70e0]/20 to-[#610593]/20 rounded-2xl -z-10 transform rotate-3 group-hover:rotate-6 transition-transform duration-500"></div>
               <div className="absolute top-4 right-4 sm:top-6 sm:right-6 w-[calc(100%-2rem)] h-[calc(100%-2rem)] sm:w-[calc(100%-3rem)] sm:h-[calc(100%-3rem)] bg-gradient-to-br from-[#610593]/10 to-[#290258]/10 rounded-2xl -z-20 transform rotate-6 group-hover:rotate-12 transition-transform duration-700"></div>
               
-              {/* Glowing Orbs - Better positioned */}
+              {/* Glowing Orb - Reduced to 1 for performance */}
               <div className="absolute top-1/4 -left-8 w-4 h-4 sm:w-6 sm:h-6 bg-[#3e70e0] rounded-full opacity-60 animate-pulse blur-sm"></div>
-              <div className="absolute bottom-1/3 -right-6 w-3 h-3 sm:w-4 sm:h-4 bg-[#610593] rounded-full opacity-40 animate-pulse delay-1000 blur-sm"></div>
-              <div className="absolute top-1/2 -left-4 w-2 h-2 sm:w-3 sm:h-3 bg-[#3e70e0] rounded-full opacity-50 animate-pulse delay-2000 blur-sm"></div>
             </div>
           </div>
         </div>

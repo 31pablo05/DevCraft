@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect, useRef } from "react"
 import { Button } from "./ui/Button"
 import { Mail, Linkedin, Github, Instagram, Facebook, MessageCircle, ArrowUp, Heart, Code, Coffee, Sparkles, MapPin, Phone } from "lucide-react"

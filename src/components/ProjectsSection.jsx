@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, Suspense, lazy } from "react";
 import { Button } from "./ui/Button";
-import { Grid, List, ArrowRight, Github, ExternalLink, GraduationCap, Heart, Utensils, Camera, Code2, Music, Sparkles, Zap, TrendingUp, Eye, Star, Filter } from "lucide-react";
+import { Grid, List, ArrowRight, Github, ExternalLink, GraduationCap, Heart, Utensils, Camera, Code2, Sparkles, Zap, TrendingUp, Eye, Star, Filter } from "lucide-react";
 import projects from "./projects/projectsData";
 const ProjectCard = lazy(() => import("./projects/ProjectCard"));
 const ProjectStats = lazy(() => import("./projects/ProjectStats"));
@@ -25,7 +25,6 @@ function ProjectsSection() {
   const [particles, setParticles] = useState([]);
   const [activeFilter, setActiveFilter] = useState('all');
   const [viewMode, setViewMode] = useState('grid');
-  const [projectsAnimated, setProjectsAnimated] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const sectionRef = useRef(null);
 
@@ -52,40 +51,31 @@ function ProjectsSection() {
   }, []);
 
   useEffect(() => {
+    let rafId = null;
+
     const handleMouseMove = (e) => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        setMousePosition({
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top
-        });
-      }
+      if (rafId) return;
+
+      rafId = requestAnimationFrame(() => {
+        if (sectionRef.current) {
+          const rect = sectionRef.current.getBoundingClientRect();
+          setMousePosition({
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top
+          });
+        }
+        rafId = null;
+      });
     };
 
     const section = sectionRef.current;
     if (section) {
-      section.addEventListener('mousemove', handleMouseMove);
-      return () => section.removeEventListener('mousemove', handleMouseMove);
+      section.addEventListener('mousemove', handleMouseMove, { passive: true });
+      return () => {
+        section.removeEventListener('mousemove', handleMouseMove);
+        if (rafId) cancelAnimationFrame(rafId);
+      };
     }
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => setProjectsAnimated(true), 300);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
   }, []);
 
   const iconMap = {
@@ -93,8 +83,7 @@ function ProjectsSection() {
     Heart,
     Utensils,
     Camera,
-    Code2,
-    Music
+    Code2
   };
 
   const filteredProjects = activeFilter === 'all'
@@ -289,7 +278,6 @@ function ProjectsSection() {
                   project={project} 
                   index={index} 
                   viewMode={viewMode} 
-                  animated={projectsAnimated} 
                 />
               </div>
             ))}

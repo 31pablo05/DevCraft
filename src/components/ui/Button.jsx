@@ -1,5 +1,3 @@
-"use client"
-
 import { forwardRef } from "react"
 
 const Button = forwardRef(({ className = "", variant = "default", size = "default", children, ...props }, ref) => {

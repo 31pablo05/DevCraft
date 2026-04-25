@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Internal optimization docs
+PERFORMANCE*.md
+ADVANCED*.md

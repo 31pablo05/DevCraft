@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from "react"
 
 export default function PlaceholderImage({ width = 400, height = 300, text = "Imagen", className = "" }) {

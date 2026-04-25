@@ -1,5 +1,3 @@
-"use client"
-
 import { forwardRef } from "react"
 
 const Badge = forwardRef(({ className = "", variant = "default", ...props }, ref) => {
