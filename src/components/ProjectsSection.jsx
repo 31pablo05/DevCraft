@@ -107,9 +107,12 @@ function ProjectsSection() {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(42,132,235,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(42,132,235,0.03)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000,transparent)]"></div>
         
         {/* Gradient Orbs with Enhanced Glow */}
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#2a84eb]/10 rounded-full blur-[120px] animate-pulse"></div>
-        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-[#630898]/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#290359]/8 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }}></div>
+        {/* Orb 1 - oculto en mobile */}
+        <div className="hidden sm:block absolute top-0 left-1/4 w-[300px] h-[300px] lg:w-[500px] lg:h-[500px] bg-[#2a84eb]/10 rounded-full blur-[80px] lg:blur-[120px] animate-pulse"></div>
+        {/* Orb 2 - oculto en mobile */}
+        <div className="hidden sm:block absolute bottom-0 right-1/4 w-[350px] h-[350px] lg:w-[600px] lg:h-[600px] bg-[#630898]/10 rounded-full blur-[80px] lg:blur-[120px] animate-pulse" style={{ animationDelay: '1s' }}></div>
+        {/* Orb 3 - oculto en mobile */}
+        <div className="hidden sm:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] lg:w-[700px] lg:h-[700px] bg-[#290359]/8 rounded-full blur-[80px] lg:blur-[120px] animate-pulse" style={{ animationDelay: '2s' }}></div>
         
         {/* Dynamic Particles */}
         {particles.map((particle) => (

@@ -97,8 +97,8 @@ export default function Header() {
             <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4 text-lg sm:text-xl md:text-2xl font-bold flex-shrink-0">
               <div className="logo-container relative group cursor-pointer">
                 <img 
-                  width="48" 
-                  height="48" 
+                  width="96" 
+                  height="96" 
                   src="/assets/logo/logomejorado.webp" 
                   alt="Pablo Proboste Logo" 
                   className="header-logo-float w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 transform transition-all duration-300 hover:scale-110"

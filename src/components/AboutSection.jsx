@@ -102,7 +102,7 @@ export default function AboutSection() {
             {/* Image Section */}
             <div className={`relative order-2 lg:order-1 w-full transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
               <div className="max-w-xs sm:max-w-sm lg:max-w-md mx-auto lg:mx-0 w-full group px-4 sm:px-0 mt-4 sm:mt-6 lg:mt-8">
-                <div className="relative">
+                <div className="relative overflow-hidden">
                   {/* Main Image */}
                   <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl">
                     <img 
@@ -137,13 +137,13 @@ export default function AboutSection() {
                   </div>
                   
                   {/* Floating Icons */}
-                  <div className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-2xl flex items-center justify-center about-floating-slow about-shadow-custom z-20 about-icon-bg-1">
+                  <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-10 h-10 sm:w-12 sm:h-12 lg:w-20 lg:h-20 rounded-2xl flex items-center justify-center about-floating-slow about-shadow-custom z-20 about-icon-bg-1">
                     <Code className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-[#fdfeff]" />
                   </div>
-                  <div className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 w-14 h-14 sm:w-18 sm:h-18 lg:w-24 lg:h-24 rounded-2xl flex items-center justify-center about-floating-medium about-shadow-custom z-20 about-icon-bg-2">
+                  <div className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 w-12 h-12 sm:w-14 sm:h-14 lg:w-24 lg:h-24 rounded-2xl flex items-center justify-center about-floating-medium about-shadow-custom z-20 about-icon-bg-2">
                     <Palette className="w-7 h-7 sm:w-9 sm:h-9 lg:w-12 lg:h-12 text-[#fdfeff]" />
                   </div>
-                  <div className="absolute top-1/2 -right-6 sm:-right-8 w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-2xl flex items-center justify-center about-floating-fast about-shadow-custom z-20 about-icon-bg-3">
+                  <div className="absolute top-1/2 -right-2 sm:-right-4 w-8 h-8 sm:w-10 sm:h-10 lg:w-16 lg:h-16 rounded-2xl flex items-center justify-center about-floating-fast about-shadow-custom z-20 about-icon-bg-3">
                     <Zap className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-[#fdfeff]" />
                   </div>
                 </div>
